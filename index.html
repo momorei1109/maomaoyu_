@@ -6,48 +6,56 @@
     <link rel="apple-touch-icon" href="https://i.postimg.cc/02M9GT4s/IMG-4705.jpg">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#F7F7F9" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="apple-touch-icon" href="https://i.postimg.cc/9XxpsWyY/IMG-4419.png"> <!-- 应用桌面头像 -->
-    <title>UI_ARCHIVE</title>
+    <link rel="apple-touch-icon" href="https://i.postimg.cc/9XxpsWyY/IMG-4419.png">
+    <title>Cinnamoroll</title>
     
+    <!-- 极简 Zev黑体 -->
     <link href="https://fontsapi.zeoseven.com/2110/main/result.css" onload="this.rel='stylesheet'" rel="preload" as="style" crossorigin />
     <noscript><link rel="stylesheet" href="https://fontsapi.zeoseven.com/2110/main/result.css" /></noscript>
     
     <style>
-        /* ====== 高定黑白灰引擎 ====== */
+        /* ====== 高定黑白灰引擎 (空气感) ====== */
         :root {
             --bg-main: #F7F7F9;
             --bg-panel: #FFFFFF;
             --text-main: #111111;
-            --text-sub: #888888;
+            --text-sub: #777777;
+            --text-mini: #AAAAAA;
+            
             --border-line: rgba(0, 0, 0, 0.08);
-            --btn-bg: #111111;
-            --btn-text: #FFFFFF;
-            --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+            --border-dash: rgba(0, 0, 0, 0.15);
+            
+            --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
             --hover-bg: rgba(0, 0, 0, 0.03);
             --input-bg: #F0F0F2;
+            
+            --danger-color: #C2748B; /* 干枯玫瑰粉，高级警示色 */
         }
 
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg-main: #000000;
-                --bg-panel: #151515;
-                --text-main: #EFEFEF;
-                --text-sub: #777777;
-                --border-line: rgba(255, 255, 255, 0.1);
-                --btn-bg: #EFEFEF;
-                --btn-text: #111111;
-                --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-                --hover-bg: rgba(255, 255, 255, 0.05);
-                --input-bg: #1E1E1E;
-            }
+        body.dark-mode {
+            --bg-main: #000000;
+            --bg-panel: #151515;
+            --text-main: #EFEFEF;
+            --text-sub: #888888;
+            --text-mini: #555555;
+            
+            --border-line: rgba(255, 255, 255, 0.08);
+            --border-dash: rgba(255, 255, 255, 0.15);
+            
+            --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.3), 0 1px 5px rgba(0, 0, 0, 0.15);
+            --hover-bg: rgba(255, 255, 255, 0.05);
+            --input-bg: #1E1E1E;
+            
+            --danger-color: #B56C81;
         }
 
-        body.force-light { --bg-main: #F7F7F9; --bg-panel: #FFFFFF; --text-main: #111111; --text-sub: #888888; --border-line: rgba(0, 0, 0, 0.08); --btn-bg: #111111; --btn-text: #FFFFFF; --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.04); --hover-bg: rgba(0, 0, 0, 0.03); --input-bg: #F0F0F2; }
-        body.force-dark { --bg-main: #000000; --bg-panel: #151515; --text-main: #EFEFEF; --text-sub: #777777; --border-line: rgba(255, 255, 255, 0.1); --btn-bg: #EFEFEF; --btn-text: #111111; --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); --hover-bg: rgba(255, 255, 255, 0.05); --input-bg: #1E1E1E; }
+        /* 强制模式变量 */
+        body.force-light { --bg-main:#F7F7F9; --bg-panel:#FFFFFF; --text-main:#111111; --text-sub:#777777; --text-mini:#AAAAAA; --border-line:rgba(0,0,0,0.08); --border-dash:rgba(0,0,0,0.15); --card-shadow:0 8px 30px rgba(0,0,0,0.04),0 1px 3px rgba(0,0,0,0.02); --hover-bg:rgba(0,0,0,0.03); --input-bg:#F0F0F2; --danger-color:#C2748B; }
+        body.force-dark { --bg-main:#000000; --bg-panel:#151515; --text-main:#EFEFEF; --text-sub:#888888; --text-mini:#555555; --border-line:rgba(255,255,255,0.08); --border-dash:rgba(255,255,255,0.15); --card-shadow:0 10px 40px rgba(0,0,0,0.3),0 1px 5px rgba(0,0,0,0.15); --hover-bg:rgba(255,255,255,0.05); --input-bg:#1E1E1E; --danger-color:#B56C81; }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
 
@@ -57,25 +65,67 @@
             font-size: 12px; transition: background 0.3s, color 0.3s;
         }
 
-        /* 顶部导航 */
+        /* ====== 顶部导航 (带呼吸灯) ====== */
         .navbar {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 16px 20px; background: rgba(var(--bg-panel), 0.8);
+            padding: 16px 20px; background: rgba(var(--bg-panel), 0.85);
             backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border-line);
             position: sticky; top: 0; z-index: 100;
         }
-        .nav-title { font-size: 14px; font-weight: bold; letter-spacing: 1px; font-family: monospace; }
-        .nav-tools { display: flex; gap: 14px; align-items: center; }
-        .icon-btn { cursor: pointer; font-size: 16px; color: var(--text-sub); transition: color 0.2s; font-family: monospace; }
-        .icon-btn:hover { color: var(--text-main); }
+        
+        .nav-left { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+        
+        /* 黑灰呼吸灯 */
+        .status-dot {
+            width: 6px; height: 6px; border-radius: 50%;
+            background-color: var(--text-main);
+            box-shadow: 0 0 6px var(--text-sub);
+            animation: breath 2.5s infinite ease-in-out;
+        }
+        @keyframes breath { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.3; transform: scale(0.8); } }
 
-        /* 视图容器 */
-        .view-container { display: none; padding: 20px; max-width: 600px; margin: 0 auto; animation: fadeIn 0.3s ease; }
+        .nav-title { font-size: 13.5px; font-weight: bold; letter-spacing: 0.5px; }
+        
+        .mode-btn { 
+            cursor: pointer; font-size: 16px; color: var(--text-sub); 
+            transition: color 0.2s; font-family: monospace; display: flex; align-items: center; justify-content: center;
+            width: 32px; height: 32px; border-radius: 50%;
+        }
+        .mode-btn:hover { color: var(--text-main); background: var(--hover-bg); }
+
+        /* ====== 视图容器 ====== */
+        .view-container { 
+            display: none; padding: 20px 16px; max-width: 440px; margin: 0 auto; 
+            animation: fadeIn 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); 
+        }
         .view-container.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* ====== 主页：卡片网格 ====== */
+        /* ====== 胶囊按钮系统 ====== */
+        .capsule-btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 6px 14px; border-radius: 20px;
+            font-size: 11px; font-weight: bold; letter-spacing: 1px;
+            cursor: pointer; transition: all 0.2s ease;
+            background: var(--bg-panel); border: 1px solid var(--border-line);
+            color: var(--text-main);
+        }
+        .capsule-btn:active { transform: scale(0.95); }
+        .capsule-btn.primary { background: var(--text-main); color: var(--bg-main); border-color: transparent; }
+        .capsule-btn.danger { color: var(--danger-color); border-color: var(--border-line); }
+
+        /* ====== 主页：添加板块 & 卡片网格 ====== */
+        .add-block {
+            background: var(--hover-bg); border: 1px dashed var(--border-dash);
+            border-radius: 12px; padding: 14px; margin-bottom: 20px;
+            display: flex; justify-content: center; align-items: center; gap: 8px;
+            cursor: pointer; color: var(--text-sub); transition: all 0.2s ease;
+        }
+        .add-block:hover { color: var(--text-main); border-color: var(--text-sub); }
+        .add-block:active { transform: scale(0.98); background: var(--border-line); }
+        .add-text { font-size: 11.5px; font-weight: bold; letter-spacing: 1px; }
+
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px; }
         .card {
             background: var(--bg-panel); border: 1px solid var(--border-line);
@@ -85,41 +135,39 @@
         }
         .card:active { transform: scale(0.96); }
         .card-cover { width: 100%; aspect-ratio: 4/3; background-size: cover; background-position: center; border-bottom: 1px solid var(--border-line); background-color: var(--input-bg);}
-        .card-info { padding: 10px 12px; flex-grow: 1;}
-        .card-title { font-size: 12.5px; font-weight: bold; margin-bottom: 4px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        .card-meta { font-size: 10px; color: var(--text-sub); font-family: monospace; }
+        .card-info { padding: 10px 12px; flex-grow: 1; display: flex; flex-direction: column; justify-content: center;}
+        .card-title { font-size: 12.5px; font-weight: bold; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-        .empty-state { text-align: center; color: var(--text-sub); padding: 40px 20px; font-family: monospace; grid-column: 1 / -1; }
+        .empty-state { text-align: center; color: var(--text-mini); padding: 30px 0; font-weight: bold; grid-column: 1 / -1; }
 
         /* ====== 编辑/新增页 ====== */
+        .form-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .form-title { font-size: 15px; font-weight: bold; }
+        
         .form-group { margin-bottom: 16px; }
-        .form-label { display: block; font-size: 10.5px; font-weight: bold; color: var(--text-sub); margin-bottom: 6px; letter-spacing: 1px;}
+        .form-label { display: block; font-size: 10.5px; font-weight: bold; color: var(--text-sub); margin-bottom: 6px; letter-spacing: 0.5px;}
         .form-input, .form-textarea {
             width: 100%; background: var(--input-bg); color: var(--text-main);
-            border: 1px solid var(--border-line); border-radius: 8px;
-            padding: 10px 12px; font-size: 12px; font-family: inherit; outline: none;
+            border: 1px solid var(--border-line); border-radius: 10px;
+            padding: 10px 12px; font-size: 11.5px; font-family: inherit; outline: none;
+            transition: border-color 0.2s;
         }
-        .form-textarea { height: 120px; resize: vertical; font-family: monospace; }
-        
-        .btn-row { display: flex; gap: 12px; margin-top: 24px; }
-        .btn {
-            flex: 1; padding: 12px; border-radius: 8px; font-size: 12px; font-weight: bold;
-            text-align: center; cursor: pointer; border: none; font-family: monospace; letter-spacing: 1px;
-        }
-        .btn-primary { background: var(--btn-bg); color: var(--btn-text); }
-        .btn-secondary { background: var(--input-bg); color: var(--text-main); border: 1px solid var(--border-line); }
+        .form-input:focus, .form-textarea:focus { border-color: var(--text-sub); }
+        .form-textarea { height: 100px; resize: vertical; line-height: 1.5; }
+        .code-area { font-family: monospace; height: 180px; }
 
-        /* ====== 详情/渲染页 ====== */
+        /* ====== 详情/预览页 (无边框清透感) ====== */
         .detail-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-        .detail-title { font-size: 16px; font-weight: bold; }
-        .detail-actions { display: flex; gap: 12px; }
+        .detail-actions { display: flex; gap: 8px; }
         
-        /* 手机壳沙箱 */
+        .d-title { font-size: 15px; font-weight: bold; margin-bottom: 16px; line-height: 1.4; word-break: break-all;}
+        
+        /* 纯粹的渲染容器，不再有粗黑边框 */
         .render-box {
             width: 100%; height: 600px;
-            border: 8px solid var(--text-main); border-radius: 28px;
+            border: 1px solid var(--border-line); border-radius: 16px;
             overflow: hidden; margin-bottom: 24px; background: var(--bg-panel);
-            position: relative; box-shadow: var(--card-shadow);
+            box-shadow: var(--card-shadow);
         }
         .render-box iframe { width: 100%; height: 100%; border: none; display: block; }
         
@@ -127,22 +175,24 @@
         .copy-block {
             background: var(--bg-panel); border: 1px solid var(--border-line);
             border-radius: 12px; padding: 14px; margin-bottom: 16px;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
         }
-        .cb-head { display: flex; justify-content: space-between; margin-bottom: 8px; align-items: center;}
-        .cb-title { font-size: 11px; font-weight: bold; color: var(--text-sub); }
-        .cb-btn { font-size: 10px; padding: 3px 8px; background: var(--hover-bg); border-radius: 4px; cursor: pointer; border: 1px solid var(--border-line); }
+        .cb-head { display: flex; justify-content: space-between; margin-bottom: 10px; align-items: center;}
+        .cb-title { font-size: 11px; font-weight: bold; color: var(--text-main); }
         .cb-content {
-            font-family: monospace; font-size: 10px; color: var(--text-main);
-            background: var(--input-bg); padding: 10px; border-radius: 6px;
-            max-height: 100px; overflow-y: auto; white-space: pre-wrap; word-break: break-all;
+            font-family: monospace; font-size: 10.5px; color: var(--text-sub);
+            background: var(--input-bg); padding: 10px 12px; border-radius: 8px;
+            max-height: 120px; overflow-y: auto; white-space: pre-wrap; word-break: break-all;
+            border: 1px solid var(--border-line); line-height: 1.4;
         }
 
         /* 提示框 */
         .toast {
-            position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-20px);
+            position: fixed; top: 24px; left: 50%; transform: translateX(-50%) translateY(-10px);
             background: var(--text-main); color: var(--bg-main);
-            padding: 8px 16px; border-radius: 20px; font-size: 11px; font-weight: bold;
-            opacity: 0; pointer-events: none; transition: all 0.3s; z-index: 1000;
+            padding: 8px 18px; border-radius: 20px; font-size: 11px; font-weight: bold; letter-spacing: 1px;
+            opacity: 0; pointer-events: none; transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
         }
         .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
     </style>
@@ -150,46 +200,53 @@
 <body>
 
     <div class="navbar">
-        <div class="nav-title" onclick="app.goHome()">✧ UI_ARCHIVE</div>
-        <div class="nav-tools">
-            <div class="icon-btn" onclick="app.toggleTheme()">☾</div>
-            <div class="icon-btn" onclick="app.goEdit()">+</div>
+        <div class="nav-left" onclick="app.goHome()">
+            <div class="status-dot"></div>
+            <div class="nav-title">Cinnamoroll (-ω-)</div>
         </div>
+        <div class="mode-btn" onclick="app.toggleTheme()">☾</div>
     </div>
 
     <!-- 视图 1：主页列表 -->
     <div id="view-home" class="view-container active">
+        <!-- 内嵌式添加模块 -->
+        <div class="add-block" onclick="app.goEdit()">
+            <span class="add-icon">+</span>
+            <span class="add-text">新增收纳</span>
+        </div>
+        
         <div class="grid" id="card-list"></div>
     </div>
 
-    <!-- 视图 2：详情渲染页 -->
+    <!-- 视图 2：详情预览页 -->
     <div id="view-detail" class="view-container">
         <div class="detail-header">
-            <div class="icon-btn" onclick="app.goHome()">← BACK</div>
+            <div class="capsule-btn" onclick="app.goHome()">返回</div>
             <div class="detail-actions">
-                <div class="icon-btn" onclick="app.goEdit(app.currentId)">EDIT</div>
-                <div class="icon-btn" onclick="app.deleteItem(app.currentId)" style="color: #ff4444;">DEL</div>
+                <div class="capsule-btn danger" onclick="app.deleteItem(app.currentId)">删除</div>
+                <div class="capsule-btn primary" onclick="app.goEdit(app.currentId)">编辑</div>
             </div>
         </div>
-        <div class="detail-title" id="d-title" style="margin-bottom: 16px;">Title</div>
         
-        <!-- 沙箱渲染区 -->
+        <div class="d-title" id="d-title">标题加载中...</div>
+        
+        <!-- 沉浸式空气感渲染区 -->
         <div class="render-box">
             <iframe id="d-iframe" sandbox="allow-scripts allow-same-origin"></iframe>
         </div>
 
         <div class="copy-block">
             <div class="cb-head">
-                <span class="cb-title">REGEX / 正则表达式</span>
-                <div class="cb-btn" onclick="app.copyText('d-regex')">COPY</div>
+                <span class="cb-title">正则匹配词</span>
+                <div class="capsule-btn" onclick="app.copyText('d-regex')">复制正则</div>
             </div>
             <div class="cb-content" id="d-regex"></div>
         </div>
 
         <div class="copy-block">
             <div class="cb-head">
-                <span class="cb-title">PROMPT / 输出规范</span>
-                <div class="cb-btn" onclick="app.copyText('d-prompt')">COPY</div>
+                <span class="cb-title">酒馆输出规范</span>
+                <div class="capsule-btn" onclick="app.copyText('d-prompt')">复制规范</div>
             </div>
             <div class="cb-content" id="d-prompt"></div>
         </div>
@@ -197,40 +254,37 @@
 
     <!-- 视图 3：新增/编辑表单 -->
     <div id="view-form" class="view-container">
-        <div class="detail-header">
-            <div class="icon-btn" onclick="app.goHome()">← CANCEL</div>
-            <div class="detail-title" id="f-header-title">NEW UI</div>
+        <div class="form-header">
+            <div class="capsule-btn" onclick="app.goHome()">取消</div>
+            <div class="form-title" id="f-header-title">编辑属性</div>
+            <div class="capsule-btn primary" onclick="app.saveItem()">保存</div>
         </div>
         
         <input type="hidden" id="f-id">
         
         <div class="form-group">
-            <label class="form-label">TITLE / 名称</label>
-            <input type="text" class="form-input" id="f-title" placeholder="例如：经久程星历状态栏">
+            <label class="form-label">标题名称</label>
+            <input type="text" class="form-input" id="f-title" placeholder="如：极简聊天状态栏">
         </div>
         <div class="form-group">
-            <label class="form-label">COVER URL / 预览图链接</label>
+            <label class="form-label">封面图片链接</label>
             <input type="text" class="form-input" id="f-cover" placeholder="https://i.postimg.cc/...">
         </div>
         <div class="form-group">
-            <label class="form-label">REGEX / 正则表达式</label>
-            <input type="text" class="form-input" id="f-regex" placeholder="/<娱乐档案>([\s\S]*?)<\/娱乐档案>/is">
+            <label class="form-label">正则表达式</label>
+            <input type="text" class="form-input" id="f-regex" placeholder="/<自定义标签>([\s\S]*?)<\/自定义标签>/is">
         </div>
         <div class="form-group">
-            <label class="form-label">PROMPT / 输出规范</label>
+            <label class="form-label">酒馆输出规范 (Prompt)</label>
             <textarea class="form-textarea" id="f-prompt" placeholder="填入该美化对应的系统提示词..."></textarea>
         </div>
         <div class="form-group">
-            <label class="form-label">HTML CODE / 美化源码</label>
-            <textarea class="form-textarea" id="f-html" placeholder="填入完整的 HTML 代码..." style="height: 250px;"></textarea>
-        </div>
-
-        <div class="btn-row">
-            <button class="btn btn-primary" onclick="app.saveItem()">SAVE</button>
+            <label class="form-label">HTML 源码代码</label>
+            <textarea class="form-textarea code-area" id="f-html" placeholder="填入完整的 HTML 代码..."></textarea>
         </div>
     </div>
 
-    <div class="toast" id="toast">Copied!</div>
+    <div class="toast" id="toast">操作成功</div>
 
     <script>
         const app = {
@@ -248,7 +302,6 @@
                 if (stored) {
                     try { this.data = JSON.parse(stored); } catch (e) { this.data = []; }
                 } else {
-                    // 默认预置一个示例卡片
                     this.data = [];
                 }
             },
@@ -260,22 +313,32 @@
             initTheme() {
                 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
                 const saved = localStorage.getItem('UI_Theme');
-                if (saved === 'dark') document.body.classList.add('force-dark');
-                else if (saved === 'light') document.body.classList.add('force-light');
-                else if (prefersDark.matches) document.body.classList.add('force-dark');
+                const modeBtn = document.querySelector('.mode-btn');
+                
+                if (saved === 'dark') {
+                    document.body.classList.add('force-dark'); modeBtn.innerText = '☼';
+                } else if (saved === 'light') {
+                    document.body.classList.add('force-light'); modeBtn.innerText = '☾';
+                } else if (prefersDark.matches) {
+                    document.body.classList.add('force-dark'); modeBtn.innerText = '☼';
+                }
             },
 
             toggleTheme() {
                 let isDark = document.body.classList.contains('force-dark') || 
                              (!document.body.classList.contains('force-light') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+                const modeBtn = document.querySelector('.mode-btn');
+                             
                 if (isDark) {
                     document.body.classList.remove('force-dark');
                     document.body.classList.add('force-light');
                     localStorage.setItem('UI_Theme', 'light');
+                    modeBtn.innerText = '☾';
                 } else {
                     document.body.classList.remove('force-light');
                     document.body.classList.add('force-dark');
                     localStorage.setItem('UI_Theme', 'dark');
+                    modeBtn.innerText = '☼';
                 }
             },
 
@@ -293,15 +356,14 @@
             renderList() {
                 const list = document.getElementById('card-list');
                 if (this.data.length === 0) {
-                    list.innerHTML = `<div class="empty-state">NO DATA FOUND<br><br>点击右上角 + 号添加美化</div>`;
+                    list.innerHTML = `<div class="empty-state">尚未收纳任何代码<br><br>请点击上方区域新增</div>`;
                     return;
                 }
                 list.innerHTML = this.data.map(item => `
                     <div class="card" onclick="app.goDetail('${item.id}')">
                         <div class="card-cover" style="background-image: url('${item.cover || ''}')"></div>
                         <div class="card-info">
-                            <div class="card-title">${item.title || 'Untitled'}</div>
-                            <div class="card-meta">HTML // JS // CSS</div>
+                            <div class="card-title">${item.title || '未命名收纳'}</div>
                         </div>
                     </div>
                 `).join('');
@@ -310,7 +372,7 @@
             goEdit(id = null) {
                 document.getElementById('f-id').value = id || '';
                 if (id) {
-                    document.getElementById('f-header-title').innerText = 'EDIT UI';
+                    document.getElementById('f-header-title').innerText = '修改设定';
                     const item = this.data.find(d => d.id === id);
                     if(item) {
                         document.getElementById('f-title').value = item.title || '';
@@ -320,7 +382,7 @@
                         document.getElementById('f-html').value = item.htmlCode || '';
                     }
                 } else {
-                    document.getElementById('f-header-title').innerText = 'NEW UI';
+                    document.getElementById('f-header-title').innerText = '录入新美化';
                     document.getElementById('f-title').value = '';
                     document.getElementById('f-cover').value = '';
                     document.getElementById('f-regex').value = '';
@@ -341,7 +403,7 @@
                     htmlCode: document.getElementById('f-html').value.trim()
                 };
                 
-                if(!newItem.title) newItem.title = "Untitled UI";
+                if(!newItem.title) newItem.title = "未命名收纳";
 
                 if (idVal) {
                     const idx = this.data.findIndex(d => d.id === idVal);
@@ -350,14 +412,15 @@
                     this.data.unshift(newItem);
                 }
                 this.saveData();
-                this.showToast('SAVED');
+                this.showToast('保存成功');
                 this.goHome();
             },
 
             deleteItem(id) {
-                if(confirm("DELETE THIS UI?")) {
+                if(confirm("确定要永久删除这个美化档案吗？")) {
                     this.data = this.data.filter(d => d.id !== id);
                     this.saveData();
+                    this.showToast('已删除');
                     this.goHome();
                 }
             },
@@ -368,23 +431,23 @@
                 if(!item) return;
 
                 document.getElementById('d-title').innerText = item.title;
-                document.getElementById('d-regex').innerText = item.regex || 'N/A';
-                document.getElementById('d-prompt').innerText = item.prompt || 'N/A';
+                document.getElementById('d-regex').innerText = item.regex || '无数据';
+                document.getElementById('d-prompt').innerText = item.prompt || '无数据';
                 
-                // 将代码注入 Iframe
+                // 将代码注入 Iframe，去除粗黑边框，完美融入
                 const iframe = document.getElementById('d-iframe');
-                iframe.srcdoc = item.htmlCode || '<div style="text-align:center;font-family:monospace;padding:20px;color:#888;">No Code</div>';
+                iframe.srcdoc = item.htmlCode || '<div style="text-align:center;font-family:monospace;padding:30px;color:#888;">暂无代码输入</div>';
                 
                 this.switchView('view-detail');
             },
 
             copyText(elementId) {
                 const text = document.getElementById(elementId).innerText;
-                if(!text || text === 'N/A') return;
+                if(!text || text === '无数据') return;
                 navigator.clipboard.writeText(text).then(() => {
-                    this.showToast('COPIED');
+                    this.showToast('内容已复制');
                 }).catch(err => {
-                    this.showToast('FAILED');
+                    this.showToast('复制失败，请手动选择');
                 });
             },
 
