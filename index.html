@@ -24,7 +24,7 @@
             --bg-panel: #FFFFFF;
             --text-main: #111111;
             --text-sub: #777777;
-            --text-mini: #AAAAAA;
+            --text-mini: #BBBBBB;
             
             --border-line: rgba(0, 0, 0, 0.08);
             --border-dash: rgba(0, 0, 0, 0.15);
@@ -33,7 +33,7 @@
             --hover-bg: rgba(0, 0, 0, 0.03);
             --input-bg: #F0F0F2;
             
-            --danger-color: #C2748B; /* 干枯玫瑰粉，高级警示色 */
+            --danger-color: #C2748B; 
         }
 
         body.dark-mode {
@@ -53,8 +53,7 @@
             --danger-color: #B56C81;
         }
 
-        /* 强制模式变量 */
-        body.force-light { --bg-main:#F7F7F9; --bg-panel:#FFFFFF; --text-main:#111111; --text-sub:#777777; --text-mini:#AAAAAA; --border-line:rgba(0,0,0,0.08); --border-dash:rgba(0,0,0,0.15); --card-shadow:0 8px 30px rgba(0,0,0,0.04),0 1px 3px rgba(0,0,0,0.02); --hover-bg:rgba(0,0,0,0.03); --input-bg:#F0F0F2; --danger-color:#C2748B; }
+        body.force-light { --bg-main:#F7F7F9; --bg-panel:#FFFFFF; --text-main:#111111; --text-sub:#777777; --text-mini:#BBBBBB; --border-line:rgba(0,0,0,0.08); --border-dash:rgba(0,0,0,0.15); --card-shadow:0 8px 30px rgba(0,0,0,0.04),0 1px 3px rgba(0,0,0,0.02); --hover-bg:rgba(0,0,0,0.03); --input-bg:#F0F0F2; --danger-color:#C2748B; }
         body.force-dark { --bg-main:#000000; --bg-panel:#151515; --text-main:#EFEFEF; --text-sub:#888888; --text-mini:#555555; --border-line:rgba(255,255,255,0.08); --border-dash:rgba(255,255,255,0.15); --card-shadow:0 10px 40px rgba(0,0,0,0.3),0 1px 5px rgba(0,0,0,0.15); --hover-bg:rgba(255,255,255,0.05); --input-bg:#1E1E1E; --danger-color:#B56C81; }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
@@ -76,7 +75,6 @@
         
         .nav-left { display: flex; align-items: center; gap: 10px; cursor: pointer; }
         
-        /* 黑灰呼吸灯 */
         .status-dot {
             width: 6px; height: 6px; border-radius: 50%;
             background-color: var(--text-main);
@@ -115,16 +113,23 @@
         .capsule-btn.primary { background: var(--text-main); color: var(--bg-main); border-color: transparent; }
         .capsule-btn.danger { color: var(--danger-color); border-color: var(--border-line); }
 
+        /* 点击变色反馈类 */
+        .capsule-btn.copied {
+            background: var(--text-main); color: var(--bg-main); border-color: transparent;
+        }
+
         /* ====== 主页：添加板块 & 卡片网格 ====== */
         .add-block {
             background: var(--hover-bg); border: 1px dashed var(--border-dash);
             border-radius: 12px; padding: 14px; margin-bottom: 20px;
             display: flex; justify-content: center; align-items: center; gap: 8px;
-            cursor: pointer; color: var(--text-sub); transition: all 0.2s ease;
+            cursor: pointer; transition: all 0.2s ease;
         }
-        .add-block:hover { color: var(--text-main); border-color: var(--text-sub); }
+        .add-block:hover { border-color: var(--text-sub); }
         .add-block:active { transform: scale(0.98); background: var(--border-line); }
-        .add-text { font-size: 11.5px; font-weight: bold; letter-spacing: 1px; }
+        
+        /* 变浅且不加粗 */
+        .add-text { font-size: 11.5px; font-weight: normal; color: var(--text-mini); letter-spacing: 1px; }
 
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px; }
         .card {
@@ -156,13 +161,24 @@
         .form-textarea { height: 100px; resize: vertical; line-height: 1.5; }
         .code-area { font-family: monospace; height: 180px; }
 
-        /* ====== 详情/预览页 (无边框清透感) ====== */
+        /* 手机直传图片虚线框 */
+        .upload-area {
+            width: 100%; height: 120px;
+            background: var(--input-bg); border: 1px dashed var(--border-dash);
+            border-radius: 10px; display: flex; justify-content: center; align-items: center;
+            cursor: pointer; overflow: hidden; position: relative; transition: border-color 0.2s;
+        }
+        .upload-area:hover { border-color: var(--text-sub); }
+        .upload-text { font-size: 11px; color: var(--text-mini); pointer-events: none; }
+        .upload-preview { width: 100%; height: 100%; object-fit: cover; display: none; pointer-events: none; }
+
+        /* ====== 详情/预览页 ====== */
         .detail-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
         .detail-actions { display: flex; gap: 8px; }
         
         .d-title { font-size: 15px; font-weight: bold; margin-bottom: 16px; line-height: 1.4; word-break: break-all;}
         
-        /* 纯粹的渲染容器，不再有粗黑边框 */
+        /* 无边框空气感渲染区 */
         .render-box {
             width: 100%; height: 600px;
             border: 1px solid var(--border-line); border-radius: 16px;
@@ -209,10 +225,9 @@
 
     <!-- 视图 1：主页列表 -->
     <div id="view-home" class="view-container active">
-        <!-- 内嵌式添加模块 -->
+        <!-- 秀气版新增卡片 -->
         <div class="add-block" onclick="app.goEdit()">
-            <span class="add-icon">+</span>
-            <span class="add-text">新增收纳</span>
+            <span class="add-text">+ 新增小卡片</span>
         </div>
         
         <div class="grid" id="card-list"></div>
@@ -230,7 +245,6 @@
         
         <div class="d-title" id="d-title">标题加载中...</div>
         
-        <!-- 沉浸式空气感渲染区 -->
         <div class="render-box">
             <iframe id="d-iframe" sandbox="allow-scripts allow-same-origin"></iframe>
         </div>
@@ -238,7 +252,7 @@
         <div class="copy-block">
             <div class="cb-head">
                 <span class="cb-title">正则匹配词</span>
-                <div class="capsule-btn" onclick="app.copyText('d-regex')">复制正则</div>
+                <div class="capsule-btn" onclick="app.copyText('d-regex', this)">复制正则</div>
             </div>
             <div class="cb-content" id="d-regex"></div>
         </div>
@@ -246,7 +260,7 @@
         <div class="copy-block">
             <div class="cb-head">
                 <span class="cb-title">酒馆输出规范</span>
-                <div class="capsule-btn" onclick="app.copyText('d-prompt')">复制规范</div>
+                <div class="capsule-btn" onclick="app.copyText('d-prompt', this)">复制规范</div>
             </div>
             <div class="cb-content" id="d-prompt"></div>
         </div>
@@ -266,10 +280,19 @@
             <label class="form-label">标题名称</label>
             <input type="text" class="form-input" id="f-title" placeholder="如：极简聊天状态栏">
         </div>
+
+        <!-- 手机直传图片模块 -->
         <div class="form-group">
-            <label class="form-label">封面图片链接</label>
-            <input type="text" class="form-input" id="f-cover" placeholder="https://i.postimg.cc/...">
+            <label class="form-label">封面图片 (点击方框上传相册图片)</label>
+            <div class="upload-area" onclick="document.getElementById('f-cover-file').click()">
+                <span class="upload-text" id="upload-text">点击选择照片</span>
+                <img class="upload-preview" id="f-cover-preview" src="">
+            </div>
+            <!-- 隐藏的 input file 和 base64 容器 -->
+            <input type="file" id="f-cover-file" accept="image/*" style="display:none;" onchange="app.handleImageUpload(event)">
+            <input type="hidden" id="f-cover-base64">
         </div>
+
         <div class="form-group">
             <label class="form-label">正则表达式</label>
             <input type="text" class="form-input" id="f-regex" placeholder="/<自定义标签>([\s\S]*?)<\/自定义标签>/is">
@@ -356,7 +379,7 @@
             renderList() {
                 const list = document.getElementById('card-list');
                 if (this.data.length === 0) {
-                    list.innerHTML = `<div class="empty-state">尚未收纳任何代码<br><br>请点击上方区域新增</div>`;
+                    list.innerHTML = `<div class="empty-state">收纳夹空空如也</div>`;
                     return;
                 }
                 list.innerHTML = this.data.map(item => `
@@ -369,25 +392,82 @@
                 `).join('');
             },
 
+            /* 图片上传并智能压缩 Base64 */
+            handleImageUpload(event) {
+                const file = event.target.files[0];
+                if (!file) return;
+                
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        const MAX_WIDTH = 400; // 限制宽度防止爆内存
+                        let width = img.width;
+                        let height = img.height;
+                        
+                        if (width > MAX_WIDTH) {
+                            height = Math.round((height * MAX_WIDTH) / width);
+                            width = MAX_WIDTH;
+                        }
+                        
+                        canvas.width = width;
+                        canvas.height = height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, width, height);
+                        
+                        // 压缩为 jpeg，质量 0.6
+                        const dataUrl = canvas.toDataURL('image/jpeg', 0.6); 
+                        
+                        document.getElementById('f-cover-base64').value = dataUrl;
+                        
+                        const preview = document.getElementById('f-cover-preview');
+                        preview.src = dataUrl;
+                        preview.style.display = 'block';
+                        document.getElementById('upload-text').style.display = 'none';
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            },
+
             goEdit(id = null) {
                 document.getElementById('f-id').value = id || '';
+                
+                const preview = document.getElementById('f-cover-preview');
+                const uploadText = document.getElementById('upload-text');
+                
                 if (id) {
                     document.getElementById('f-header-title').innerText = '修改设定';
                     const item = this.data.find(d => d.id === id);
                     if(item) {
                         document.getElementById('f-title').value = item.title || '';
-                        document.getElementById('f-cover').value = item.cover || '';
+                        document.getElementById('f-cover-base64').value = item.cover || '';
                         document.getElementById('f-regex').value = item.regex || '';
                         document.getElementById('f-prompt').value = item.prompt || '';
                         document.getElementById('f-html').value = item.htmlCode || '';
+                        
+                        if(item.cover) {
+                            preview.src = item.cover;
+                            preview.style.display = 'block';
+                            uploadText.style.display = 'none';
+                        } else {
+                            preview.style.display = 'none';
+                            uploadText.style.display = 'block';
+                        }
                     }
                 } else {
                     document.getElementById('f-header-title').innerText = '录入新美化';
                     document.getElementById('f-title').value = '';
-                    document.getElementById('f-cover').value = '';
+                    document.getElementById('f-cover-base64').value = '';
                     document.getElementById('f-regex').value = '';
                     document.getElementById('f-prompt').value = '';
                     document.getElementById('f-html').value = '';
+                    
+                    preview.style.display = 'none';
+                    preview.src = '';
+                    uploadText.style.display = 'block';
+                    document.getElementById('f-cover-file').value = ''; // 清空选择的文件
                 }
                 this.switchView('view-form');
             },
@@ -397,7 +477,7 @@
                 const newItem = {
                     id: idVal ? idVal : 'ui_' + Date.now(),
                     title: document.getElementById('f-title').value.trim(),
-                    cover: document.getElementById('f-cover').value.trim(),
+                    cover: document.getElementById('f-cover-base64').value.trim(),
                     regex: document.getElementById('f-regex').value.trim(),
                     prompt: document.getElementById('f-prompt').value.trim(),
                     htmlCode: document.getElementById('f-html').value.trim()
@@ -411,9 +491,14 @@
                 } else {
                     this.data.unshift(newItem);
                 }
-                this.saveData();
-                this.showToast('保存成功');
-                this.goHome();
+                
+                try {
+                    this.saveData();
+                    this.showToast('保存成功');
+                    this.goHome();
+                } catch(e) {
+                    alert("保存失败！可能是图片过大超出了手机存储限制，请尝试上传更小尺寸的图片。");
+                }
             },
 
             deleteItem(id) {
@@ -434,18 +519,28 @@
                 document.getElementById('d-regex').innerText = item.regex || '无数据';
                 document.getElementById('d-prompt').innerText = item.prompt || '无数据';
                 
-                // 将代码注入 Iframe，去除粗黑边框，完美融入
                 const iframe = document.getElementById('d-iframe');
                 iframe.srcdoc = item.htmlCode || '<div style="text-align:center;font-family:monospace;padding:30px;color:#888;">暂无代码输入</div>';
                 
                 this.switchView('view-detail');
             },
 
-            copyText(elementId) {
+            /* 带有视觉反馈的复制功能 */
+            copyText(elementId, btnElement) {
                 const text = document.getElementById(elementId).innerText;
                 if(!text || text === '无数据') return;
+                
                 navigator.clipboard.writeText(text).then(() => {
-                    this.showToast('内容已复制');
+                    // 按钮反色动画
+                    const originalText = btnElement.innerText;
+                    btnElement.classList.add('copied');
+                    btnElement.innerText = '已复制 ✓';
+                    
+                    setTimeout(() => {
+                        btnElement.classList.remove('copied');
+                        btnElement.innerText = originalText;
+                    }, 1000);
+                    
                 }).catch(err => {
                     this.showToast('复制失败，请手动选择');
                 });
