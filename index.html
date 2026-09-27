@@ -16,245 +16,315 @@
     <noscript><link rel="stylesheet" href="https://fontsapi.zeoseven.com/2110/main/result.css" /></noscript>
     
     <style>
-        /* ====== 高定黑白灰引擎 (空气感、低对比度) ====== */
+        /* ====== 极致冰透极简引擎 (Pure Ice Glass) ====== */
         :root {
-            --bg-main: #F7F8FA;        /* 偏白的干净底色 */
-            --bg-panel: #FFFFFF;
+            /* 纯净日间 */
+            --bg-main: #F4F5F7;
+            --bg-panel: rgba(255, 255, 255, 0.65);
+            --bg-panel-solid: #FFFFFF;
+            --text-main: #111111;
+            --text-sub: #777777;
+            --text-mini: #BBBBBB;
             
-            --text-title: #3A3A3C;     /* 稍微浅一点的黑灰色标题 */
-            --text-main: #2C2C2E;
-            --text-sub: #8E8E93;
-            --text-mini: #C7C7CC;
+            --border-line: rgba(0, 0, 0, 0.06);
+            --border-highlight: rgba(255, 255, 255, 0.95);
             
-            --border-line: rgba(0, 0, 0, 0.05); /* 极细极淡边框 */
-            --border-dash: rgba(0, 0, 0, 0.1);
+            --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.02);
+            --jelly-inset: inset 0 1px 0 var(--border-highlight), inset 0 -1px 0 rgba(0,0,0,0.02);
+            --inner-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.03);
             
-            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02);
-            --hover-bg: rgba(0, 0, 0, 0.02);
-            --input-bg: #F2F2F7;
-            --btn-bg: #FFFFFF;
+            --hover-bg: rgba(0, 0, 0, 0.03);
+            --input-bg: rgba(0, 0, 0, 0.03);
             
-            --accent-color: #111111;
+            --accent-color: #111111; 
+            --danger-color: #C2748B; 
             
-            /* 极淡的波点 */
-            --dot-bg: radial-gradient(rgba(0,0,0,0.045) 1px, transparent 1px);
+            --dot-bg: radial-gradient(rgba(0,0,0,0.05) 1px, transparent 1px);
         }
 
         body.dark-mode {
-            --bg-main: #18181A;        /* 高级岩灰，拒绝死黑 */
-            --bg-panel: #202022;
-            
-            --text-title: #D1D1D6;
+            /* 深邃夜间 */
+            --bg-main: #121214;
+            --bg-panel: rgba(28, 28, 30, 0.65);
+            --bg-panel-solid: #1C1C1E;
             --text-main: #EAEAEA;
             --text-sub: #8E8E93;
             --text-mini: #555555;
             
-            --border-line: rgba(255, 255, 255, 0.05);
-            --border-dash: rgba(255, 255, 255, 0.12);
+            --border-line: rgba(255, 255, 255, 0.08);
+            --border-highlight: rgba(255, 255, 255, 0.1);
             
-            --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.25), 0 1px 3px rgba(0, 0, 0, 0.15);
-            --hover-bg: rgba(255, 255, 255, 0.03);
-            --input-bg: #151516;
-            --btn-bg: #2C2C2E;
+            --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.3), 0 2px 10px rgba(0, 0, 0, 0.2);
+            --jelly-inset: inset 0 1px 0 var(--border-highlight), inset 0 -1px 0 rgba(0,0,0,0.2);
+            --inner-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.2);
             
-            --accent-color: #EAEAEA;
+            --hover-bg: rgba(255, 255, 255, 0.05);
+            --input-bg: rgba(0, 0, 0, 0.2);
+            
+            --accent-color: #EAEAEA; 
+            --danger-color: #B56C81;
             
             --dot-bg: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
         }
 
-        body.force-light { --bg-main:#F7F8FA; --bg-panel:#FFFFFF; --text-title:#3A3A3C; --text-main:#2C2C2E; --text-sub:#8E8E93; --border-line:rgba(0,0,0,0.05); --input-bg:#F2F2F7; --btn-bg:#FFFFFF; --dot-bg:radial-gradient(rgba(0,0,0,0.025) 1px, transparent 1px); }
-        body.force-dark { --bg-main:#18181A; --bg-panel:#202022; --text-title:#D1D1D6; --text-main:#EAEAEA; --text-sub:#8E8E93; --border-line:rgba(255,255,255,0.05); --input-bg:#151516; --btn-bg:#2C2C2E; --dot-bg:radial-gradient(rgba(255,255,255,0.02) 1px, transparent 1px); }
+        body.force-light { 
+            --bg-main:#F4F5F7; --bg-panel:rgba(255,255,255,0.65); --bg-panel-solid:#FFFFFF; 
+            --text-main:#111111; --text-sub:#777777; --border-line:rgba(0,0,0,0.06); 
+            --accent-color:#111111; --input-bg:rgba(0,0,0,0.03); 
+            --dot-bg:radial-gradient(rgba(0,0,0,0.05) 1px, transparent 1px); 
+        }
+        body.force-dark { 
+            --bg-main:#121214; --bg-panel:rgba(28,28,30,0.65); --bg-panel-solid:#1C1C1E; 
+            --text-main:#EAEAEA; --text-sub:#8E8E93; --border-line:rgba(255,255,255,0.08); 
+            --accent-color:#EAEAEA; --input-bg:rgba(0,0,0,0.2); 
+            --dot-bg:radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px); 
+        }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
 
         body {
             font-family: "ZevHeiTC-N Dev", -apple-system, sans-serif;
             background-color: var(--bg-main); color: var(--text-main);
-            background-image: var(--dot-bg); background-size: 16px 16px;
-            font-size: 12px; transition: background-color 0.3s, color 0.3s;
+            background-image: var(--dot-bg); background-size: 14px 14px;
+            font-size: 11px;
+            line-height: 1.5;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        .svg-icon {
+            width: 12px; height: 12px; fill: none; stroke: currentColor;
+            stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
         }
 
         /* ====== 顶部导航 ====== */
         .navbar {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 16px 20px; background: rgba(var(--bg-panel), 0.7);
-            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+            padding: 14px 20px; background: var(--bg-panel);
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
             border-bottom: 1px solid var(--border-line);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
             position: sticky; top: 0; z-index: 100;
         }
         
         .nav-left { display: flex; align-items: center; gap: 8px; cursor: pointer; }
         .status-dot {
-            width: 6px; height: 6px; border-radius: 50%;
-            background-color: var(--text-sub); 
+            width: 5px; height: 5px; border-radius: 50%;
+            background-color: var(--text-main); box-shadow: 0 0 8px var(--text-main);
             animation: breath 3s infinite ease-in-out;
         }
         @keyframes breath { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.85); } }
         
-        .nav-title { font-size: 13px; font-weight: bold; color: var(--text-title); letter-spacing: 0.5px; }
+        .nav-title-group { display: flex; flex-direction: column; }
+        .nav-title { font-size: 11.5px; font-weight: bold; letter-spacing: 0.5px; }
+        .nav-subtitle { font-family: "Courier New", monospace; font-size: 9px; color: var(--text-sub); transform: scale(0.95) origin-left; }
         
         .nav-tools { display: flex; gap: 8px; }
         
-        /* 胶囊状设置/模式按钮 */
+        /* 缩小的顶栏按钮 */
         .icon-btn { 
-            cursor: pointer; font-size: 12px; color: var(--text-sub); 
-            transition: all 0.2s; font-family: monospace; 
+            cursor: pointer; color: var(--text-sub); 
             display: flex; align-items: center; justify-content: center;
-            padding: 4px 12px; border-radius: 14px;
-            background: var(--btn-bg); border: 1px solid var(--border-line);
-            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+            width: 26px; height: 26px; border-radius: 8px;
+            background: var(--bg-panel-solid); border: 1px solid var(--border-line);
+            box-shadow: var(--card-shadow), var(--jelly-inset);
+            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
-        .icon-btn:hover { color: var(--text-main); background: var(--hover-bg); }
+        .icon-btn:hover { color: var(--text-main); transform: translateY(-1px); }
+        .icon-btn:active { transform: translateY(0) scale(0.95); }
 
         /* ====== 视图容器 ====== */
         .view-container { 
-            display: none; padding: 20px 16px; max-width: 440px; margin: 0 auto; 
-            animation: fadeIn 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); 
+            display: none; padding: 24px 16px; max-width: 400px; margin: 0 auto; 
+            animation: fadeIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); 
         }
         .view-container.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(12px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
-        /* ====== 胶囊按钮 (全局) ====== */
+        /* ====== 果冻胶囊按钮 ====== */
         .capsule-btn {
             display: inline-flex; align-items: center; justify-content: center;
-            padding: 6px 14px; border-radius: 20px;
-            font-size: 11px; font-weight: bold; letter-spacing: 1px;
-            cursor: pointer; transition: all 0.2s ease;
-            background: var(--bg-panel); border: 1px solid var(--border-line);
-            color: var(--text-sub);
+            padding: 6px 12px; border-radius: 100px;
+            font-size: 10.5px; font-weight: bold; letter-spacing: 0.5px;
+            cursor: pointer; transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+            background: var(--bg-panel-solid); border: 1px solid var(--border-line);
+            color: var(--text-main); box-shadow: var(--card-shadow), var(--jelly-inset);
         }
-        .capsule-btn:active { transform: scale(0.96); }
-        .capsule-btn:hover { color: var(--text-main); }
-        .capsule-btn.primary { background: var(--text-title); color: var(--bg-main); border-color: transparent; }
+        .capsule-btn:hover { transform: translateY(-1px); }
+        .capsule-btn:active { transform: translateY(0) scale(0.95); }
+        
+        /* 修正夜间白底白字问题：确保强调按钮字体始终与背景反差 */
+        .capsule-btn.primary, .capsule-btn.copied { 
+            background: var(--accent-color); 
+            color: var(--bg-main); /* 强制使用底层背景色，确保日间黑底白字，夜间白底黑字 */
+            border: none; box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+        }
+        .capsule-btn.primary:hover, .capsule-btn.copied:hover { opacity: 0.9; }
+        
+        .capsule-btn.danger { color: var(--danger-color); }
 
-        /* ====== 主页：新增按钮与网格 ====== */
+        /* ====== 主页 ====== */
+        /* 修改要求：淡实线，不加粗 */
         .add-block {
-            background: var(--hover-bg); border: 1px dashed var(--border-dash);
-            border-radius: 12px; padding: 12px; margin-bottom: 20px;
+            background: var(--bg-panel); border: 1px solid var(--border-line);
+            border-radius: 16px; padding: 14px; margin-bottom: 24px;
             display: flex; justify-content: center; align-items: center; gap: 8px;
-            cursor: pointer; transition: all 0.2s ease;
+            cursor: pointer; transition: all 0.3s ease; box-shadow: var(--inner-shadow);
         }
-        .add-block:active { transform: scale(0.98); background: var(--border-line); }
-        .add-text { font-size: 11px; color: var(--text-sub); letter-spacing: 1px; }
+        .add-block:hover { border-color: var(--text-sub); }
+        .add-block:active { transform: scale(0.98); }
+        .add-text { font-size: 11px; font-weight: normal; color: var(--text-sub); letter-spacing: 1px; }
 
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 14px; }
         .card {
-            background: var(--bg-panel); border: 1px solid var(--border-line);
-            border-radius: 10px; overflow: hidden; cursor: pointer;
-            box-shadow: var(--card-shadow); transition: transform 0.2s;
+            background: var(--bg-panel-solid); border: 1px solid var(--border-line);
+            border-radius: 14px; overflow: hidden; cursor: pointer;
+            box-shadow: var(--card-shadow), var(--jelly-inset); 
+            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
             display: flex; flex-direction: column;
         }
+        .card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.06), var(--jelly-inset); }
         .card:active { transform: scale(0.96); }
-        .card-cover { width: 100%; aspect-ratio: 4/3; background-size: cover; background-position: center; border-bottom: 1px solid var(--border-line); background-color: var(--input-bg);}
-        .card-info { padding: 10px; flex-grow: 1; display: flex; flex-direction: column; justify-content: center;}
-        .card-title { font-size: 12px; font-weight: bold; color: var(--text-title); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        .empty-state { text-align: center; color: var(--text-sub); padding: 30px 0; font-family: monospace; grid-column: 1 / -1; }
+        
+        /* 封面区：支持背景图 或 iframe 缩放预览 */
+        .card-cover { 
+            width: 100%; aspect-ratio: 4/3; background-size: cover; background-position: center; 
+            border-bottom: 1px solid var(--border-line); background-color: var(--input-bg); 
+            position: relative; overflow: hidden;
+        }
+        .card-cover::after { content: ''; position: absolute; inset: 0; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.02); z-index: 20; pointer-events: none; }
+        
+        /* 微缩 iframe 预览专用 */
+        .preview-iframe-wrap {
+            position: absolute; inset: 0; pointer-events: none; z-index: 10;
+        }
+        .preview-iframe-wrap iframe {
+            width: 390px; height: 292px; border: none;
+            transform: scale(0.3333); transform-origin: 0 0;
+            background: transparent;
+        }
+
+        .card-info { padding: 12px 14px; flex-grow: 1; display: flex; flex-direction: column; justify-content: center;}
+        .card-title { font-size: 11.5px; font-weight: bold; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        
+        .empty-state { text-align: center; color: var(--text-sub); padding: 40px 0; font-size: 11px; grid-column: 1 / -1; display: flex; flex-direction: column; gap: 8px; align-items: center;}
+        .empty-icon { opacity: 0.3; }
 
         /* ====== 编辑/新增页 ====== */
-        .form-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .form-title { font-size: 14px; font-weight: bold; color: var(--text-title); }
+        .form-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+        .form-title { font-size: 14px; font-weight: bold; }
         
-        .form-group { margin-bottom: 16px; position: relative;}
-        .form-label { display: flex; justify-content: space-between; align-items: center; font-size: 10px; font-weight: bold; color: var(--text-sub); margin-bottom: 6px; letter-spacing: 0.5px;}
+        .form-group { margin-bottom: 20px; position: relative;}
+        .form-label { display: flex; justify-content: space-between; align-items: center; font-size: 10px; font-weight: bold; color: var(--text-sub); margin-bottom: 8px; letter-spacing: 0.5px; }
+        
         .form-input, .form-textarea {
             width: 100%; background: var(--input-bg); color: var(--text-main);
-            border: 1px solid var(--border-line); border-radius: 8px;
-            padding: 10px 12px; font-size: 11px; font-family: inherit; outline: none;
-            transition: border-color 0.2s;
+            border: 1px solid var(--border-line); border-radius: 12px;
+            padding: 12px 14px; font-size: 11px; font-family: inherit; outline: none;
+            transition: all 0.3s ease; box-shadow: var(--inner-shadow);
         }
-        .form-input:focus, .form-textarea:focus { border-color: var(--text-sub); }
-        .form-textarea { height: 100px; resize: vertical; line-height: 1.5; }
-        .code-area { font-family: monospace; height: 160px; font-size: 10.5px; }
+        .form-input:focus, .form-textarea:focus { border-color: var(--accent-color); background: var(--bg-panel-solid); box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05); }
+        .form-textarea { height: 110px; resize: vertical; line-height: 1.5; }
+        .code-area { font-family: "Courier New", monospace; height: 180px; }
 
         /* 图片直传 */
         .upload-area {
-            width: 100%; height: 100px;
-            background: var(--input-bg); border: 1px dashed var(--border-dash);
-            border-radius: 8px; display: flex; justify-content: center; align-items: center;
-            cursor: pointer; overflow: hidden; position: relative; transition: border-color 0.2s;
+            width: 100%; height: 130px;
+            background: var(--input-bg); border: 1px dashed var(--border-line);
+            border-radius: 12px; display: flex; justify-content: center; align-items: center;
+            cursor: pointer; overflow: hidden; position: relative; transition: all 0.3s ease;
+            box-shadow: var(--inner-shadow);
         }
-        .upload-area:hover { border-color: var(--text-sub); }
-        .upload-text { font-size: 11px; color: var(--text-sub); pointer-events: none; }
+        .upload-area:hover { border-color: var(--accent-color); }
+        .upload-text { font-size: 10px; font-weight: bold; color: var(--text-sub); pointer-events: none; letter-spacing: 0.5px; }
         .upload-preview-wrap { position: absolute; inset: 0; display: none; }
         .upload-preview { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .upload-hover-hint { position: absolute; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(2px); color: white; display: flex; justify-content: center; align-items: center; opacity: 0; font-size: 10.5px; font-weight: bold; transition: opacity 0.3s; pointer-events: none;}
+        .upload-area:hover .upload-hover-hint { opacity: 1; }
 
-        /* 呼叫AI */
+        /* AI 呼叫按钮 */
         .ai-btn {
-            background: var(--bg-panel); color: var(--text-main); border: 1px solid var(--border-line);
-            padding: 2px 10px; border-radius: 12px; font-size: 9px; cursor: pointer;
-            transition: all 0.2s; display: flex; align-items: center; box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+            background: var(--bg-panel-solid); color: var(--text-main); 
+            border: 1px solid var(--border-line); box-shadow: var(--card-shadow), var(--jelly-inset);
+            padding: 4px 10px; border-radius: 100px; font-size: 9px; font-weight: bold; cursor: pointer;
+            transition: all 0.2s; display: flex; align-items: center; gap: 4px;
         }
-        .ai-btn:active { transform: scale(0.95); background: var(--hover-bg); }
+        .ai-btn:active { transform: scale(0.92); }
 
         /* ====== 详情/预览页 ====== */
-        .detail-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-        .d-title { font-size: 14px; font-weight: bold; color: var(--text-title); line-height: 1.4; word-break: break-all;}
+        .detail-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+        .d-title { font-size: 16px; font-weight: bold; line-height: 1.4; word-break: break-all; margin-bottom: 20px;}
         
+        /* 丝滑分段选择器 */
         .view-switch {
-            display: flex; background: var(--input-bg); border-radius: 20px; padding: 2px;
-            margin-bottom: 16px; border: 1px solid var(--border-line);
+            display: flex; background: var(--input-bg); border-radius: 100px; padding: 3px;
+            margin-bottom: 20px; box-shadow: var(--inner-shadow);
         }
         .sw-btn {
-            flex: 1; text-align: center; padding: 6px 0; font-size: 10px; font-weight: bold;
-            color: var(--text-sub); border-radius: 18px; cursor: pointer; transition: all 0.2s;
+            flex: 1; text-align: center; padding: 8px 0; font-size: 10px; font-weight: bold;
+            color: var(--text-sub); border-radius: 100px; cursor: pointer; transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
-        .sw-btn.active { background: var(--bg-panel); color: var(--text-main); box-shadow: 0 2px 6px rgba(0,0,0,0.04); }
+        .sw-btn.active { background: var(--bg-panel-solid); color: var(--text-main); box-shadow: var(--card-shadow), var(--jelly-inset); border: 1px solid var(--border-line); }
 
-        /* 沙箱预览 */
         .render-box {
-            width: 100%; height: 600px;
-            border: 1px solid var(--border-line); border-radius: 12px;
-            overflow: hidden; margin-bottom: 24px; background: var(--bg-panel);
-            box-shadow: var(--card-shadow); transition: all 0.3s;
+            width: 100%; height: 500px;
+            border: 1px solid var(--border-line); border-radius: 16px;
+            overflow: hidden; margin-bottom: 24px; background: var(--bg-panel-solid);
+            box-shadow: var(--card-shadow), var(--jelly-inset); transition: all 0.3s;
         }
         .render-box iframe { width: 100%; height: 100%; border: none; display: block; }
         
         .copy-block {
-            background: var(--bg-panel); border: 1px solid var(--border-line);
-            border-radius: 10px; padding: 12px; margin-bottom: 14px;
+            background: var(--bg-panel-solid); border: 1px solid var(--border-line);
+            border-radius: 16px; padding: 16px; margin-bottom: 16px;
+            box-shadow: var(--card-shadow), var(--jelly-inset);
         }
-        .cb-head { display: flex; justify-content: space-between; margin-bottom: 8px; align-items: center;}
-        .cb-title { font-size: 10px; font-weight: bold; color: var(--text-sub); font-family: monospace; }
+        .cb-head { display: flex; justify-content: space-between; margin-bottom: 12px; align-items: center;}
+        .cb-title { font-size: 11px; font-weight: bold; color: var(--text-sub); letter-spacing: 0.5px;}
+        
+        .cb-head-right { display: flex; gap: 6px; }
+
         .cb-content {
-            font-family: monospace; font-size: 10px; color: var(--text-main);
-            background: var(--input-bg); padding: 8px 10px; border-radius: 6px;
-            max-height: 100px; overflow-y: auto; white-space: pre-wrap; word-break: break-all;
-            border: 1px solid var(--border-line); line-height: 1.4;
+            font-family: "Courier New", monospace; font-size: 10.5px; color: var(--text-main);
+            background: var(--input-bg); padding: 12px 14px; border-radius: 10px;
+            max-height: 120px; overflow-y: auto; white-space: pre-wrap; word-break: break-all;
+            box-shadow: var(--inner-shadow); line-height: 1.4;
         }
 
         /* ====== 设置弹窗 ====== */
         .modal-bg {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.3); backdrop-filter: blur(5px);
+            position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
             z-index: 900; display: none; align-items: center; justify-content: center;
-            animation: fadeIn 0.2s;
+            animation: fadeIn 0.3s ease;
         }
         .modal-bg.active { display: flex; }
         .modal-card {
-            background: var(--bg-panel); width: 85%; max-width: 320px;
-            border-radius: 16px; padding: 20px; border: 1px solid var(--border-line);
-            box-shadow: var(--card-shadow);
+            background: var(--bg-panel-solid); width: 85%; max-width: 320px;
+            border-radius: 20px; padding: 24px; border: 1px solid var(--border-line);
+            box-shadow: 0 24px 60px rgba(0,0,0,0.2), var(--jelly-inset);
         }
-        .modal-title { font-size: 13px; font-weight: bold; color: var(--text-title); margin-bottom: 12px; text-align: center;}
-        .modal-hint { font-size: 10px; color: var(--text-sub); margin-bottom: 16px; line-height: 1.4; text-align: justify;}
+        .modal-title { font-size: 14px; font-weight: bold; margin-bottom: 8px; text-align: center;}
+        .modal-hint { font-size: 10px; color: var(--text-sub); margin-bottom: 20px; line-height: 1.5; text-align: center;}
         
         .dropdown {
             position: absolute; top: calc(100% + 4px); left: 0; right: 0;
-            background: var(--bg-panel); border: 1px solid var(--border-line);
-            border-radius: 8px; max-height: 160px; overflow-y: auto; z-index: 1000;
-            box-shadow: var(--card-shadow); display: none;
+            background: var(--bg-panel-solid); border: 1px solid var(--border-line);
+            border-radius: 12px; max-height: 160px; overflow-y: auto; z-index: 1000;
+            box-shadow: var(--card-shadow), var(--jelly-inset); display: none;
         }
         .dropdown-item {
-            padding: 8px 12px; font-size: 11px; color: var(--text-main);
+            padding: 10px 14px; font-size: 11px; color: var(--text-main); font-family: "Courier New", monospace;
             cursor: pointer; border-bottom: 1px solid var(--border-line);
         }
-        .dropdown-item:hover { background: var(--hover-bg); }
+        .dropdown-item:hover { background: var(--bg-main); color: var(--accent-color);}
+        .dropdown-item:last-child { border-bottom: none; }
 
         .toast {
             position: fixed; top: 24px; left: 50%; transform: translateX(-50%) translateY(-10px);
-            background: var(--text-main); color: var(--bg-main);
-            padding: 8px 18px; border-radius: 20px; font-size: 10.5px; font-weight: bold; letter-spacing: 1px;
-            opacity: 0; pointer-events: none; transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            background: rgba(28, 28, 30, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            color: #FFF; border: 1px solid rgba(255,255,255,0.1);
+            padding: 8px 16px; border-radius: 100px; font-size: 10.5px; font-weight: bold; letter-spacing: 0.5px;
+            opacity: 0; pointer-events: none; transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); z-index: 1000;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
         }
         .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
     </style>
@@ -264,37 +334,45 @@
     <div class="navbar">
         <div class="nav-left" onclick="app.goHome()">
             <div class="status-dot"></div>
-            <div class="nav-title">My perspective on life(･∞･ﾐэ )Э</div>
+            <div class="nav-title-group">
+                <span class="nav-title">My perspective on life(･∞･ﾐэ )Э</span>
+                <span class="nav-subtitle">关我屁事又不是我弄的</span>
+            </div>
         </div>
         <div class="nav-tools">
-            <div class="icon-btn" onclick="app.openSettings()">⚙</div>
-            <div class="icon-btn" onclick="app.toggleTheme()">☾</div>
+            <div class="icon-btn" onclick="app.openSettings()" title="捣鼓设置">
+                <svg class="svg-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+            </div>
+            <div class="icon-btn" onclick="app.toggleTheme()" title="切换日夜" id="theme-btn">
+                <svg class="svg-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </div>
         </div>
     </div>
 
-    <!-- 主页 -->
     <div id="view-home" class="view-container active">
         <div class="add-block" onclick="app.goEdit()">
-            <span class="add-text">+ 新增小卡片</span>
+            <svg class="svg-icon empty-icon" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            <span class="add-text">搓个新玩具</span>
         </div>
         <div class="grid" id="card-list"></div>
     </div>
 
-    <!-- 预览页 -->
     <div id="view-detail" class="view-container">
         <div class="detail-header">
-            <div class="capsule-btn" onclick="app.goHome()">返回</div>
+            <div class="capsule-btn" onclick="app.goHome()">
+                <svg class="svg-icon" style="margin-right:2px;" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg> 溜了
+            </div>
             <div class="detail-actions" style="display:flex; gap:8px;">
-                <div class="capsule-btn danger" onclick="app.deleteItem(app.currentId)">删除</div>
-                <div class="capsule-btn primary" onclick="app.goEdit(app.currentId)">编辑</div>
+                <div class="capsule-btn danger" onclick="app.deleteItem(app.currentId)">毁尸灭迹</div>
+                <div class="capsule-btn primary" onclick="app.goEdit(app.currentId)">扒皮微调</div>
             </div>
         </div>
         
         <div class="d-title" id="d-title">标题</div>
         
         <div class="view-switch">
-            <div class="sw-btn active" id="sw-raw" onclick="app.switchRenderMode('raw')">空框架</div>
-            <div class="sw-btn" id="sw-data" onclick="app.switchRenderMode('data')">注入文本</div>
+            <div class="sw-btn active" id="sw-raw" onclick="app.switchRenderMode('raw')">骨架模式 (空壳)</div>
+            <div class="sw-btn" id="sw-data" onclick="app.switchRenderMode('data')">注入模式 (肉身)</div>
         </div>
 
         <div class="render-box">
@@ -303,42 +381,45 @@
 
         <div class="copy-block">
             <div class="cb-head">
-                <span class="cb-title">正则匹配词</span>
-                <div class="capsule-btn" onclick="app.copyText('d-regex', this)">复制</div>
+                <span class="cb-title">匹配词：超精简正则提取</span>
+                <div class="cb-head-right">
+                    <div class="capsule-btn" onclick="app.copyText('d-regex', this)">复制</div>
+                    <div class="capsule-btn primary" onclick="app.exportJson()">📦 导出酒馆正则(JSON)</div>
+                </div>
             </div>
             <div class="cb-content" id="d-regex"></div>
         </div>
 
         <div class="copy-block">
             <div class="cb-head">
-                <span class="cb-title">酒馆输出规范</span>
+                <span class="cb-title">系统提示词：酒馆AI调教口诀</span>
                 <div class="capsule-btn" onclick="app.copyText('d-prompt', this)">复制</div>
             </div>
             <div class="cb-content" id="d-prompt"></div>
         </div>
     </div>
 
-    <!-- 表单页 -->
     <div id="view-form" class="view-container">
         <div class="form-header">
-            <div class="capsule-btn" onclick="app.goHome()">取消</div>
-            <div class="form-title" id="f-header-title">编辑属性</div>
-            <div class="capsule-btn primary" onclick="app.saveItem()">保存</div>
+            <div class="capsule-btn" onclick="app.goHome()">算了</div>
+            <div class="form-title" id="f-header-title">修改档案</div>
+            <div class="capsule-btn primary" onclick="app.saveItem()">保存收录</div>
         </div>
         
         <input type="hidden" id="f-id">
         
         <div class="form-group">
-            <label class="form-label">小卡片名称</label>
-            <input type="text" class="form-input" id="f-title" placeholder="给它起个名字...">
+            <label class="form-label">美化名称</label>
+            <input type="text" class="form-input" id="f-title" placeholder="起个响亮的名字...">
         </div>
 
         <div class="form-group">
-            <label class="form-label">封面图片</label>
+            <label class="form-label">封面靓照 (不传会自动渲染代码截图)</label>
             <div class="upload-area" onclick="document.getElementById('f-cover-file').click()">
-                <span class="upload-text" id="upload-text">+ 点击上传本地图片</span>
+                <span class="upload-text" id="upload-text">+ 戳我选照片</span>
                 <div class="upload-preview-wrap" id="f-cover-preview-wrap">
                     <img class="upload-preview" id="f-cover-preview" src="">
+                    <div class="upload-hover-hint">点击可换图</div>
                 </div>
             </div>
             <input type="file" id="f-cover-file" accept="image/*" style="display:none;" onchange="app.handleImageUpload(event)">
@@ -346,63 +427,70 @@
         </div>
 
         <div class="form-group">
-            <label class="form-label">正则表达式</label>
-            <input type="text" class="form-input" id="f-regex" placeholder="输入正则...">
+            <label class="form-label">超精简正则匹配格式</label>
+            <input type="text" class="form-input" id="f-regex" placeholder="/<自定义标签>([\s\S]*?)<\/自定义标签>/is">
         </div>
         <div class="form-group">
-            <label class="form-label">输出规范 (Prompt)</label>
-            <textarea class="form-textarea" id="f-prompt" placeholder="填入该美化对应的系统提示词..."></textarea>
+            <label class="form-label">丢给AI的填空规矩 (Prompt)</label>
+            <textarea class="form-textarea" id="f-prompt" placeholder="Author's note injection..."></textarea>
         </div>
         
         <div class="form-group">
             <label class="form-label">
-                测试文本
-                <button class="ai-btn" onclick="app.generateTestText()">呼叫 AI 生成</button>
+                模拟假数据 (用于活体预览)
+                <button class="ai-btn" onclick="app.generateTestText()">
+                    <svg class="svg-icon" style="width:10px;height:10px;" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> 唤唤AI小奴才
+                </button>
             </label>
-            <textarea class="form-textarea" id="f-testtext" placeholder="用于 [注入文本] 模式预览的文本数据..."></textarea>
+            <textarea class="form-textarea" id="f-testtext" placeholder="填入符合规范的测试文本，没思路就点旁边让AI给你编..."></textarea>
         </div>
 
         <div class="form-group">
-            <label class="form-label">HTML 源码</label>
-            <textarea class="form-textarea code-area" id="f-html" placeholder="将修改好的 HTML 粘贴在这里..."></textarea>
+            <label class="form-label">绝美前端源码 (HTML/CSS/JS)</label>
+            <textarea class="form-textarea code-area" id="f-html" placeholder="<!DOCTYPE html>..."></textarea>
         </div>
     </div>
 
-    <!-- API 设置 -->
+    <!-- API 设置弹窗 -->
     <div class="modal-bg" id="api-modal" onclick="if(event.target===this) app.closeSettings()">
         <div class="modal-card">
-            <div class="modal-title">API 接口配置</div>
-            <div class="modal-hint">配置您的 OpenAI 格式接口以启用 AI 文本生成。所有数据仅保存在手机本地。</div>
+            <div class="modal-title">捣鼓API配置</div>
+            <div class="modal-hint">这是调用AI小奴才的通道。数据仅存您的手机本地。</div>
             <div class="form-group">
-                <label class="form-label">Base URL</label>
+                <label class="form-label">接口地址 (Base URL)</label>
                 <input type="text" class="form-input" id="api-base" placeholder="https://api.openai.com/v1">
             </div>
             <div class="form-group">
-                <label class="form-label">API Key</label>
+                <label class="form-label">令牌密钥 (API Key)</label>
                 <input type="password" class="form-input" id="api-key" placeholder="sk-...">
             </div>
             <div class="form-group" style="position: relative;">
                 <label class="form-label">
-                    Model Name
-                    <div class="capsule-btn" style="padding: 2px 6px; font-size: 9px;" onclick="app.fetchModels()">获取列表</div>
+                    指定大脑 (Model Name)
+                    <div class="capsule-btn" style="padding: 2px 8px; font-size: 9px;" onclick="app.fetchModels()">拉取列表</div>
                 </label>
-                <input type="text" class="form-input" id="api-model" placeholder="手动输入或获取">
+                <input type="text" class="form-input" id="api-model" placeholder="手动填或者点旁边拉取">
                 <div class="dropdown" id="model-dropdown"></div>
             </div>
-            <div style="display:flex; gap:10px; margin-top:20px;">
-                <div class="capsule-btn" style="flex:1" onclick="app.closeSettings()">取消</div>
-                <div class="capsule-btn primary" style="flex:1" onclick="app.saveSettings()">确认</div>
+            <div style="display:flex; gap:12px; margin-top:24px;">
+                <div class="capsule-btn" style="flex:1" onclick="app.closeSettings()">算了我再想想</div>
+                <div class="capsule-btn primary" style="flex:1" onclick="app.saveSettings()">绑死它</div>
             </div>
         </div>
     </div>
 
-    <div class="toast" id="toast">操作成功</div>
+    <div class="toast" id="toast">SYS.SYNC_OK</div>
 
     <script>
         const app = {
             data: [],
             currentId: null,
             apiConfig: { url: '', key: '', model: '' },
+            
+            icons: {
+                moon: '<svg class="svg-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>',
+                sun: '<svg class="svg-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>'
+            },
 
             init() {
                 this.loadData();
@@ -434,7 +522,7 @@
                 };
                 localStorage.setItem('UI_API_Config', JSON.stringify(this.apiConfig));
                 this.closeSettings();
-                this.showToast('配置已保存');
+                this.showToast('通道已绑定！');
             },
 
             openSettings() {
@@ -448,32 +536,35 @@
             async fetchModels() {
                 const baseUrl = document.getElementById('api-base').value.trim();
                 const apiKey = document.getElementById('api-key').value.trim();
-                if (!baseUrl || !apiKey) { this.showToast("请先填写 URL 和 Key"); return; }
+                if (!baseUrl || !apiKey) { this.showToast("填完地址和令牌再拉取哦"); return; }
                 
-                this.showToast("请求中...");
+                this.showToast("小奴才正在翻找库房...");
                 try {
                     let endpoint = baseUrl.replace(/\/$/, '') + '/models';
                     const res = await fetch(endpoint, {
                         method: 'GET',
                         headers: { 'Authorization': 'Bearer ' + apiKey }
                     });
-                    if (!res.ok) throw new Error("接口无响应");
+                    if (!res.ok) throw new Error("大门被锁死了");
                     
                     const resData = await res.json();
                     let models = [];
                     if (resData.data && Array.isArray(resData.data)) {
                         models = resData.data.map(m => m.id);
-                    } else { throw new Error("格式不支持"); }
+                    } else {
+                        throw new Error("翻出来的格式不对");
+                    }
                     
                     const dropdown = document.getElementById('model-dropdown');
                     if (models.length === 0) {
-                        dropdown.innerHTML = '<div class="dropdown-item">无可用模型</div>';
+                        dropdown.innerHTML = '<div class="dropdown-item">库房是空的</div>';
                     } else {
                         dropdown.innerHTML = models.map(m => `<div class="dropdown-item" onclick="app.selectModel('${m}')">${m}</div>`).join('');
                     }
                     dropdown.style.display = 'block';
+                    this.showToast("找到了！");
                 } catch (e) {
-                    this.showToast("拉取失败：" + e.message);
+                    this.showToast("翻找失败: " + e.message);
                 }
             },
             selectModel(model) {
@@ -484,21 +575,28 @@
             initTheme() {
                 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
                 const saved = localStorage.getItem('UI_Theme');
-                const modeBtn = document.querySelector('.navbar .icon-btn:last-child');
+                const btn = document.getElementById('theme-btn');
                 
-                if (saved === 'dark') { document.body.classList.add('force-dark'); modeBtn.innerText = '☼'; }
-                else if (saved === 'light') { document.body.classList.add('force-light'); modeBtn.innerText = '☾'; }
-                else if (prefersDark.matches) { document.body.classList.add('force-dark'); modeBtn.innerText = '☼'; }
+                if (saved === 'dark' || (!saved && prefersDark.matches)) { 
+                    document.body.classList.add('force-dark'); 
+                    btn.innerHTML = this.icons.sun;
+                } else {
+                    document.body.classList.add('force-light');
+                    btn.innerHTML = this.icons.moon;
+                }
             },
             toggleTheme() {
-                let isDark = document.body.classList.contains('force-dark') || (!document.body.classList.contains('force-light') && window.matchMedia('(prefers-color-scheme: dark)').matches);
-                const modeBtn = document.querySelector('.navbar .icon-btn:last-child');
+                let isDark = document.body.classList.contains('force-dark');
+                const btn = document.getElementById('theme-btn');
+                
                 if (isDark) {
                     document.body.classList.remove('force-dark'); document.body.classList.add('force-light');
-                    localStorage.setItem('UI_Theme', 'light'); modeBtn.innerText = '☾';
+                    localStorage.setItem('UI_Theme', 'light'); 
+                    btn.innerHTML = this.icons.moon;
                 } else {
                     document.body.classList.remove('force-light'); document.body.classList.add('force-dark');
-                    localStorage.setItem('UI_Theme', 'dark'); modeBtn.innerText = '☼';
+                    localStorage.setItem('UI_Theme', 'dark'); 
+                    btn.innerHTML = this.icons.sun;
                 }
             },
 
@@ -511,13 +609,37 @@
 
             renderList() {
                 const list = document.getElementById('card-list');
-                if (this.data.length === 0) { list.innerHTML = `<div class="empty-state">尚未收纳任何代码</div>`; return; }
-                list.innerHTML = this.data.map(item => `
+                if (this.data.length === 0) { 
+                    list.innerHTML = `<div class="empty-state"><svg class="svg-icon empty-icon" style="width:24px;height:24px;" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg><span>库房里什么都没有呢</span></div>`; 
+                    return; 
+                }
+                list.innerHTML = this.data.map(item => {
+                    let coverHtml = '';
+                    if (item.cover) {
+                        coverHtml = `<div class="card-cover" style="background-image: url('${item.cover}')"></div>`;
+                    } else if (item.htmlCode) {
+                        // 微缩版动态渲染 iframe
+                        let injectedHtml = item.htmlCode;
+                        if (item.testText) {
+                            injectedHtml = injectedHtml.replace(/\$1/g, item.testText);
+                        }
+                        const safeHtml = injectedHtml.replace(/"/g, '&quot;');
+                        coverHtml = `
+                        <div class="card-cover">
+                            <div class="preview-iframe-wrap">
+                                <iframe srcdoc="${safeHtml}" sandbox="allow-scripts allow-same-origin"></iframe>
+                            </div>
+                        </div>`;
+                    } else {
+                        coverHtml = `<div class="card-cover"></div>`;
+                    }
+
+                    return `
                     <div class="card" onclick="app.goDetail('${item.id}')">
-                        <div class="card-cover" style="background-image: url('${item.cover || ''}')"></div>
-                        <div class="card-info"><div class="card-title">${item.title || '未命名'}</div></div>
-                    </div>
-                `).join('');
+                        ${coverHtml}
+                        <div class="card-info"><div class="card-title">${item.title || '无名弃婴'}</div></div>
+                    </div>`;
+                }).join('');
             },
 
             handleImageUpload(event) {
@@ -551,7 +673,7 @@
                 const uploadText = document.getElementById('upload-text');
                 
                 if (id) {
-                    document.getElementById('f-header-title').innerText = '修改设定';
+                    document.getElementById('f-header-title').innerText = '扒皮微调';
                     const item = this.data.find(d => d.id === id);
                     if(item) {
                         document.getElementById('f-title').value = item.title || '';
@@ -564,7 +686,7 @@
                         else { previewWrap.style.display = 'none'; uploadText.style.display = 'block'; }
                     }
                 } else {
-                    document.getElementById('f-header-title').innerText = '录入新美化';
+                    document.getElementById('f-header-title').innerText = '登记新玩具';
                     document.getElementById('f-title').value = ''; document.getElementById('f-cover-base64').value = '';
                     document.getElementById('f-regex').value = ''; document.getElementById('f-prompt').value = '';
                     document.getElementById('f-testtext').value = ''; document.getElementById('f-html').value = '';
@@ -578,7 +700,7 @@
                 const idVal = document.getElementById('f-id').value;
                 const newItem = {
                     id: idVal ? idVal : 'ui_' + Date.now(),
-                    title: document.getElementById('f-title').value.trim() || "未命名收纳",
+                    title: document.getElementById('f-title').value.trim() || "无名弃婴",
                     cover: document.getElementById('f-cover-base64').value.trim(),
                     regex: document.getElementById('f-regex').value.trim(),
                     prompt: document.getElementById('f-prompt').value.trim(),
@@ -587,13 +709,13 @@
                 };
                 if (idVal) { const idx = this.data.findIndex(d => d.id === idVal); if (idx > -1) this.data[idx] = newItem; } 
                 else { this.data.unshift(newItem); }
-                try { this.saveData(); this.showToast('保存成功'); this.goHome(); } 
-                catch(e) { alert("保存失败！图片可能超出了手机本地存储限制，请尝试更小的图。"); }
+                try { this.saveData(); this.showToast('已录入名册！'); this.goHome(); } 
+                catch(e) { alert("保存失败！可能是图片把手机本地容量撑爆了，换张小点的图吧。"); }
             },
 
             deleteItem(id) {
-                if(confirm("确定永久删除这个美化档案？")) {
-                    this.data = this.data.filter(d => d.id !== id); this.saveData(); this.showToast('已删除'); this.goHome();
+                if(confirm("真的要把这个心血结晶彻底毁尸灭迹吗？")) {
+                    this.data = this.data.filter(d => d.id !== id); this.saveData(); this.showToast('渣都不剩了'); this.goHome();
                 }
             },
 
@@ -603,8 +725,8 @@
                 if(!item) return;
 
                 document.getElementById('d-title').innerText = item.title;
-                document.getElementById('d-regex').innerText = item.regex || '无数据';
-                document.getElementById('d-prompt').innerText = item.prompt || '无数据';
+                document.getElementById('d-regex').innerText = item.regex || '这块空着呢';
+                document.getElementById('d-prompt').innerText = item.prompt || '这块也空着呢';
                 
                 if(item.testText && item.testText.trim() !== '') {
                     this.switchRenderMode('data');
@@ -623,32 +745,74 @@
                 document.getElementById('sw-' + mode).classList.add('active');
 
                 const iframe = document.getElementById('d-iframe');
-                let code = item.htmlCode || '<div style="text-align:center;padding:30px;color:#888;">暂无代码输入</div>';
+                let code = item.htmlCode || '<div style="text-align:center;font-family:monospace;padding:40px;color:#888;">骨架都没贴进来呢</div>';
 
                 if (mode === 'data') {
                     if(item.testText) {
                         code = code.replace(/\$1/g, item.testText);
                     } else {
-                        this.showToast('缺少测试文本，展示为空框架');
+                        this.showToast('没塞数据，只能给您看骨架了');
                     }
                 }
                 iframe.srcdoc = code;
             },
 
+            // 导出 JSON 功能
+            exportJson() {
+                const item = this.data.find(d => d.id === this.currentId);
+                if(!item) return;
+                
+                if(!item.regex || !item.htmlCode) {
+                    alert("客官，您这正则或HTML源码都没填，导出来也用不了呀！");
+                    return;
+                }
+
+                // 组装酒馆标准 JSON 格式
+                const tavernJson = {
+                    "disabled": false,
+                    "findRegex": item.regex,
+                    "id": item.id,
+                    "markdownOnly": true,
+                    "maxDepth": null,
+                    "minDepth": null,
+                    "placement": [ 2 ],
+                    "promptOnly": false,
+                    "replaceString": item.htmlCode,
+                    "runOnEdit": true,
+                    "scriptName": item.title,
+                    "substituteRegex": 0,
+                    "trimStrings": []
+                };
+
+                const jsonStr = JSON.stringify(tavernJson, null, 4);
+                const blob = new Blob([jsonStr], { type: "application/json" });
+                const url = URL.createObjectURL(blob);
+                
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `${item.title || 'SillyTavern_Regex'}.json`;
+                document.body.appendChild(a);
+                a.click();
+                
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                this.showToast('已打包塞进您的包裹里啦');
+            },
+
             async generateTestText() {
                 if (!this.apiConfig.url || !this.apiConfig.key) {
-                    alert("请先点击首页右上角的齿轮 ⚙ 配置 API 接口信息！");
+                    alert("主子，您还没去上面齿轮⚙里填API通道信息呢！");
                     return;
                 }
                 const promptVal = document.getElementById('f-prompt').value.trim();
                 if (!promptVal) {
-                    this.showToast("请先填入输出规范"); return;
+                    this.showToast("连口诀都不给，小奴才怎么编啊"); return;
                 }
 
-                this.showToast("AI 正在编写测试文本...");
-                document.getElementById('f-testtext').value = "生成中，请稍候...";
+                this.showToast("小奴才正在绞尽脑汁...");
+                document.getElementById('f-testtext').value = "笔走龙蛇中，请稍候...";
 
-                const systemMsg = "你是一个优秀的测试排版数据生成器。请根据用户提供的输出规范格式，虚构一段剧情并生成一份符合该格式的测试文本。要求：直接输出标签和内容，绝对不要输出任何其他解释性废话。";
+                const systemMsg = "你是一个极度精准的测试数据生成器。请严格遵循用户提供的输出规范格式，虚构剧情并生成一段对应的纯文本测试数据。不要输出任何除了目标格式之外的解释性废话。";
 
                 try {
                     let endpoint = this.apiConfig.url.replace(/\/$/, '') + '/chat/completions';
@@ -659,7 +823,7 @@
                             model: this.apiConfig.model || "gpt-3.5-turbo",
                             messages: [
                                 { role: "system", content: systemMsg },
-                                { role: "user", content: "输出规范如下：\n" + promptVal }
+                                { role: "user", content: "规则口诀如下：\n" + promptVal }
                             ],
                             temperature: 0.7
                         })
@@ -667,22 +831,24 @@
                     const resData = await res.json();
                     if (resData.choices && resData.choices[0] && resData.choices[0].message) {
                         document.getElementById('f-testtext').value = resData.choices[0].message.content.trim();
-                        this.showToast("生成成功！");
-                    } else { throw new Error("接口返回异常"); }
+                        this.showToast("编造成功！");
+                    } else {
+                        throw new Error("小奴才的脑子短路了");
+                    }
                 } catch(e) {
                     document.getElementById('f-testtext').value = "";
-                    alert("生成失败，请检查网络或 API 配置是否正确。\n报错信息：" + e.message);
+                    alert("呼叫失败: " + e.message);
                 }
             },
 
             copyText(elementId, btnElement) {
                 const text = document.getElementById(elementId).innerText;
-                if(!text || text === '无数据') return;
+                if(!text || text === '这块空着呢') return;
                 navigator.clipboard.writeText(text).then(() => {
-                    const originalText = btnElement.innerText;
-                    btnElement.classList.add('copied'); btnElement.innerText = '已复制';
-                    setTimeout(() => { btnElement.classList.remove('copied'); btnElement.innerText = originalText; }, 1000);
-                }).catch(err => { this.showToast('复制失败'); });
+                    const originalText = btnElement.innerHTML;
+                    btnElement.classList.add('copied'); btnElement.innerHTML = '已复制';
+                    setTimeout(() => { btnElement.classList.remove('copied'); btnElement.innerHTML = originalText; }, 1000);
+                }).catch(err => { this.showToast('哎呀，复制滑边了'); });
             },
             showToast(msg) {
                 const t = document.getElementById('toast'); t.innerText = msg; t.classList.add('show');
