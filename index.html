@@ -14,13 +14,12 @@
     
     <style>
         /* ====== 纯净冰透果冻引擎 (Ice Glass) ====== */
-        :root, body.force-light {
+        :root {
             --bg-main: #F4F5F7;
             --bg-panel: rgba(252, 252, 254, 0.6);
             --bg-panel-solid: #FCFCFE;
             --text-main: #1C1C1E;
             --text-sub: #8E8E93;
-            --text-mini: #C7C7CC;
             
             --border-line: rgba(0, 0, 0, 0.06);
             --border-highlight: rgba(255, 255, 255, 0.95);
@@ -38,16 +37,15 @@
             --dot-bg: radial-gradient(rgba(0,0,0,0.05) 1px, transparent 1px);
         }
 
-        body.dark-mode, body.force-dark {
+        body.dark-mode {
             --bg-main: #0B0B0D;
             --bg-panel: rgba(24, 24, 28, 0.6);
             --bg-panel-solid: #18181C;
             --text-main: #F4F4F5;
             --text-sub: #636366;
-            --text-mini: #48484A;
             
             --border-line: rgba(255, 255, 255, 0.08);
-            --border-highlight: rgba(255, 255, 255, 0.05);
+            --border-highlight: rgba(255, 255, 255, 0.1);
             
             --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.4), 0 2px 10px rgba(0, 0, 0, 0.2);
             --jelly-inset: inset 0 1px 0 var(--border-highlight), inset 0 -1px 0 rgba(0,0,0,0.3);
@@ -61,6 +59,9 @@
             
             --dot-bg: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
         }
+
+        body.force-light { --bg-main:#F4F5F7; --bg-panel:rgba(252,252,254,0.6); --text-main:#1C1C1E; --text-sub:#8E8E93; --border-line:rgba(0,0,0,0.06); --border-highlight:rgba(255,255,255,0.95); --input-bg:rgba(0,0,0,0.02); --dot-bg:radial-gradient(rgba(0,0,0,0.05) 1px, transparent 1px); }
+        body.force-dark { --bg-main:#0B0B0D; --bg-panel:rgba(24,24,28,0.6); --text-main:#F4F4F5; --text-sub:#636366; --border-line:rgba(255,255,255,0.08); --border-highlight:rgba(255,255,255,0.1); --input-bg:rgba(0,0,0,0.2); --dot-bg:radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px); }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
 
@@ -161,6 +162,7 @@
         .card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.06), var(--jelly-inset); }
         .card:active { transform: scale(0.96); }
         
+        /* 封面区高度压扁 (16:9) */
         .card-cover { 
             width: 100%; aspect-ratio: 16/9; background-size: cover; background-position: center; 
             border-bottom: 1px solid var(--border-line); background-color: var(--input-bg); 
@@ -168,11 +170,15 @@
         }
         .card-cover::after { content: ''; position: absolute; inset: 0; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.02); z-index: 20; pointer-events: none; }
         
-        .preview-iframe-wrap { position: absolute; inset: 0; pointer-events: none; z-index: 10; }
+        /* 改进：放大并绝对居中的微缩 iframe */
+        .preview-iframe-wrap {
+            position: absolute; top: 50%; left: 50%; 
+            width: 320px; height: 180px; /* 16:9的视口尺寸，比原来小一圈以显得字更大 */
+            transform: translate(-50%, -50%) scale(0.46); /* 放大比例以填满容器并居中 */
+            pointer-events: none; z-index: 10;
+        }
         .preview-iframe-wrap iframe {
-            width: 390px; height: 219px; border: none;
-            transform: scale(0.3333); transform-origin: 0 0;
-            background: transparent;
+            width: 100%; height: 100%; border: none; background: transparent;
         }
 
         .card-info { padding: 12px 14px; flex-grow: 1; display: flex; flex-direction: column; justify-content: center;}
@@ -198,6 +204,7 @@
         .form-textarea { height: 110px; resize: vertical; line-height: 1.5; }
         .code-area { font-family: "Courier New", monospace; height: 180px; }
 
+        /* 图片直传与删除按钮 */
         .upload-area {
             width: 100%; height: 130px;
             background: var(--input-bg); border: 1px dashed var(--border-line);
@@ -211,7 +218,20 @@
         .upload-preview { width: 100%; height: 100%; object-fit: cover; display: block; }
         .upload-hover-hint { position: absolute; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(2px); color: white; display: flex; justify-content: center; align-items: center; opacity: 0; font-size: 10.5px; font-weight: bold; transition: opacity 0.3s; pointer-events: none;}
         .upload-area:hover .upload-hover-hint { opacity: 1; }
+        
+        /* 自由删除照片按钮 */
+        .del-cover-btn {
+            position: absolute; top: 8px; right: 8px; z-index: 20;
+            width: 26px; height: 26px; border-radius: 50%;
+            background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+            color: #FFF; display: flex; justify-content: center; align-items: center;
+            font-size: 14px; font-weight: bold; cursor: pointer;
+            transition: all 0.2s ease; opacity: 0;
+        }
+        .upload-area:hover .del-cover-btn { opacity: 1; }
+        .del-cover-btn:hover { background: var(--danger-color); transform: scale(1.1); }
 
+        /* AI 呼叫按钮 */
         .ai-btn {
             background: var(--bg-panel-solid); color: var(--text-main); 
             border: 1px solid var(--border-line); box-shadow: var(--card-shadow), var(--jelly-inset);
@@ -329,7 +349,6 @@
                 <svg class="svg-icon" style="margin-right:2px;" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg> 溜了
             </div>
             <div class="detail-actions" style="display:flex; gap:8px;">
-                <!-- 导出按钮放到了操作区最前面 -->
                 <div class="capsule-btn primary" onclick="app.exportJson()">导出酒馆正则</div>
                 <div class="capsule-btn danger" onclick="app.deleteItem(app.currentId)">毁尸灭迹</div>
                 <div class="capsule-btn" onclick="app.goEdit(app.currentId)">扒皮微调</div>
@@ -380,11 +399,14 @@
 
         <div class="form-group">
             <label class="form-label">封面靓照 (不传会自动渲染代码截图)</label>
+            <!-- 修复了删除照片功能 -->
             <div class="upload-area" onclick="document.getElementById('f-cover-file').click()">
                 <span class="upload-text" id="upload-text">戳我选照片</span>
                 <div class="upload-preview-wrap" id="f-cover-preview-wrap">
                     <img class="upload-preview" id="f-cover-preview" src="">
-                    <div class="upload-hover-hint">点击可换图</div>
+                    <div class="upload-hover-hint">点击更换照片</div>
+                    <!-- 半透明删除小按钮 -->
+                    <div class="del-cover-btn" onclick="app.removeCover(event)">✕</div>
                 </div>
             </div>
             <input type="file" id="f-cover-file" accept="image/*" style="display:none;" onchange="app.handleImageUpload(event)">
@@ -588,6 +610,7 @@
                             injectedHtml = injectedHtml.replace(/\$1/g, item.testText);
                         }
                         const safeHtml = injectedHtml.replace(/"/g, '&quot;');
+                        // 放大并居中的 iframe
                         coverHtml = `
                         <div class="card-cover">
                             <div class="preview-iframe-wrap">
@@ -629,6 +652,17 @@
                     img.src = e.target.result;
                 };
                 reader.readAsDataURL(file);
+            },
+            
+            // 自由删除照片功能
+            removeCover(event) {
+                event.stopPropagation(); // 阻止触发底下的点击上传
+                document.getElementById('f-cover-base64').value = '';
+                document.getElementById('f-cover-preview').src = '';
+                document.getElementById('f-cover-preview-wrap').style.display = 'none';
+                document.getElementById('upload-text').style.display = 'block';
+                document.getElementById('f-cover-file').value = ''; 
+                this.showToast('照片已清空');
             },
 
             goEdit(id = null) {
