@@ -6,9 +6,6 @@
     <link rel="apple-touch-icon" href="https://i.postimg.cc/02M9GT4s/IMG-4705.jpg">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="apple-touch-icon" href="https://i.postimg.cc/9XxpsWyY/IMG-4419.png">
     <title>My perspective on life(･∞･ﾐэ )Э</title>
     
     <!-- 极简 Zev黑体 -->
@@ -16,68 +13,53 @@
     <noscript><link rel="stylesheet" href="https://fontsapi.zeoseven.com/2110/main/result.css" /></noscript>
     
     <style>
-        /* ====== 极致冰透极简引擎 (Pure Ice Glass) ====== */
-        :root {
-            /* 纯净日间 */
+        /* ====== 纯净冰透果冻引擎 (Ice Glass) ====== */
+        :root, body.force-light {
             --bg-main: #F4F5F7;
-            --bg-panel: rgba(255, 255, 255, 0.65);
-            --bg-panel-solid: #FFFFFF;
-            --text-main: #111111;
-            --text-sub: #777777;
-            --text-mini: #BBBBBB;
+            --bg-panel: rgba(252, 252, 254, 0.6);
+            --bg-panel-solid: #FCFCFE;
+            --text-main: #1C1C1E;
+            --text-sub: #8E8E93;
+            --text-mini: #C7C7CC;
             
             --border-line: rgba(0, 0, 0, 0.06);
             --border-highlight: rgba(255, 255, 255, 0.95);
             
-            --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.02);
+            --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.03), 0 2px 6px rgba(0, 0, 0, 0.02);
             --jelly-inset: inset 0 1px 0 var(--border-highlight), inset 0 -1px 0 rgba(0,0,0,0.02);
             --inner-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.03);
             
-            --hover-bg: rgba(0, 0, 0, 0.03);
-            --input-bg: rgba(0, 0, 0, 0.03);
+            --hover-bg: rgba(255, 255, 255, 0.8);
+            --input-bg: rgba(0, 0, 0, 0.02);
             
-            --accent-color: #111111; 
+            --accent-color: #6B8A9E; /* 冷雾蓝 */
             --danger-color: #C2748B; 
             
             --dot-bg: radial-gradient(rgba(0,0,0,0.05) 1px, transparent 1px);
         }
 
-        body.dark-mode {
-            /* 深邃夜间 */
-            --bg-main: #121214;
-            --bg-panel: rgba(28, 28, 30, 0.65);
-            --bg-panel-solid: #1C1C1E;
-            --text-main: #EAEAEA;
-            --text-sub: #8E8E93;
-            --text-mini: #555555;
+        body.dark-mode, body.force-dark {
+            --bg-main: #0B0B0D;
+            --bg-panel: rgba(24, 24, 28, 0.6);
+            --bg-panel-solid: #18181C;
+            --text-main: #F4F4F5;
+            --text-sub: #636366;
+            --text-mini: #48484A;
             
             --border-line: rgba(255, 255, 255, 0.08);
-            --border-highlight: rgba(255, 255, 255, 0.1);
+            --border-highlight: rgba(255, 255, 255, 0.05);
             
-            --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.3), 0 2px 10px rgba(0, 0, 0, 0.2);
-            --jelly-inset: inset 0 1px 0 var(--border-highlight), inset 0 -1px 0 rgba(0,0,0,0.2);
-            --inner-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.2);
+            --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.4), 0 2px 10px rgba(0, 0, 0, 0.2);
+            --jelly-inset: inset 0 1px 0 var(--border-highlight), inset 0 -1px 0 rgba(0,0,0,0.3);
+            --inner-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.3);
             
             --hover-bg: rgba(255, 255, 255, 0.05);
             --input-bg: rgba(0, 0, 0, 0.2);
             
-            --accent-color: #EAEAEA; 
+            --accent-color: #8CA8B5; /* 冰原蓝 */
             --danger-color: #B56C81;
             
-            --dot-bg: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
-        }
-
-        body.force-light { 
-            --bg-main:#F4F5F7; --bg-panel:rgba(255,255,255,0.65); --bg-panel-solid:#FFFFFF; 
-            --text-main:#111111; --text-sub:#777777; --border-line:rgba(0,0,0,0.06); 
-            --accent-color:#111111; --input-bg:rgba(0,0,0,0.03); 
-            --dot-bg:radial-gradient(rgba(0,0,0,0.05) 1px, transparent 1px); 
-        }
-        body.force-dark { 
-            --bg-main:#121214; --bg-panel:rgba(28,28,30,0.65); --bg-panel-solid:#1C1C1E; 
-            --text-main:#EAEAEA; --text-sub:#8E8E93; --border-line:rgba(255,255,255,0.08); 
-            --accent-color:#EAEAEA; --input-bg:rgba(0,0,0,0.2); 
-            --dot-bg:radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px); 
+            --dot-bg: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
@@ -109,7 +91,7 @@
         .nav-left { display: flex; align-items: center; gap: 8px; cursor: pointer; }
         .status-dot {
             width: 5px; height: 5px; border-radius: 50%;
-            background-color: var(--text-main); box-shadow: 0 0 8px var(--text-main);
+            background-color: var(--accent-color); box-shadow: 0 0 8px var(--accent-color);
             animation: breath 3s infinite ease-in-out;
         }
         @keyframes breath { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.85); } }
@@ -120,7 +102,6 @@
         
         .nav-tools { display: flex; gap: 8px; }
         
-        /* 缩小的顶栏按钮 */
         .icon-btn { 
             cursor: pointer; color: var(--text-sub); 
             display: flex; align-items: center; justify-content: center;
@@ -152,18 +133,13 @@
         .capsule-btn:hover { transform: translateY(-1px); }
         .capsule-btn:active { transform: translateY(0) scale(0.95); }
         
-        /* 修正夜间白底白字问题：确保强调按钮字体始终与背景反差 */
-        .capsule-btn.primary, .capsule-btn.copied { 
-            background: var(--accent-color); 
-            color: var(--bg-main); /* 强制使用底层背景色，确保日间黑底白字，夜间白底黑字 */
-            border: none; box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
-        }
-        .capsule-btn.primary:hover, .capsule-btn.copied:hover { opacity: 0.9; }
+        .capsule-btn.primary { background: var(--text-main); color: var(--bg-main); border: none; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .capsule-btn.primary:hover { opacity: 0.9; }
         
         .capsule-btn.danger { color: var(--danger-color); }
+        .capsule-btn.copied { background: var(--accent-color); color: var(--bg-main); border: none; }
 
         /* ====== 主页 ====== */
-        /* 修改要求：淡实线，不加粗 */
         .add-block {
             background: var(--bg-panel); border: 1px solid var(--border-line);
             border-radius: 16px; padding: 14px; margin-bottom: 24px;
@@ -185,20 +161,16 @@
         .card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.06), var(--jelly-inset); }
         .card:active { transform: scale(0.96); }
         
-        /* 封面区：支持背景图 或 iframe 缩放预览 */
         .card-cover { 
-            width: 100%; aspect-ratio: 4/3; background-size: cover; background-position: center; 
+            width: 100%; aspect-ratio: 16/9; background-size: cover; background-position: center; 
             border-bottom: 1px solid var(--border-line); background-color: var(--input-bg); 
             position: relative; overflow: hidden;
         }
         .card-cover::after { content: ''; position: absolute; inset: 0; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.02); z-index: 20; pointer-events: none; }
         
-        /* 微缩 iframe 预览专用 */
-        .preview-iframe-wrap {
-            position: absolute; inset: 0; pointer-events: none; z-index: 10;
-        }
+        .preview-iframe-wrap { position: absolute; inset: 0; pointer-events: none; z-index: 10; }
         .preview-iframe-wrap iframe {
-            width: 390px; height: 292px; border: none;
+            width: 390px; height: 219px; border: none;
             transform: scale(0.3333); transform-origin: 0 0;
             background: transparent;
         }
@@ -222,11 +194,10 @@
             padding: 12px 14px; font-size: 11px; font-family: inherit; outline: none;
             transition: all 0.3s ease; box-shadow: var(--inner-shadow);
         }
-        .form-input:focus, .form-textarea:focus { border-color: var(--accent-color); background: var(--bg-panel-solid); box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05); }
+        .form-input:focus, .form-textarea:focus { border-color: var(--accent-color); background: var(--bg-panel-solid); box-shadow: 0 0 0 2px rgba(107, 138, 158, 0.1); }
         .form-textarea { height: 110px; resize: vertical; line-height: 1.5; }
         .code-area { font-family: "Courier New", monospace; height: 180px; }
 
-        /* 图片直传 */
         .upload-area {
             width: 100%; height: 130px;
             background: var(--input-bg); border: 1px dashed var(--border-line);
@@ -241,7 +212,6 @@
         .upload-hover-hint { position: absolute; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(2px); color: white; display: flex; justify-content: center; align-items: center; opacity: 0; font-size: 10.5px; font-weight: bold; transition: opacity 0.3s; pointer-events: none;}
         .upload-area:hover .upload-hover-hint { opacity: 1; }
 
-        /* AI 呼叫按钮 */
         .ai-btn {
             background: var(--bg-panel-solid); color: var(--text-main); 
             border: 1px solid var(--border-line); box-shadow: var(--card-shadow), var(--jelly-inset);
@@ -254,7 +224,6 @@
         .detail-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
         .d-title { font-size: 16px; font-weight: bold; line-height: 1.4; word-break: break-all; margin-bottom: 20px;}
         
-        /* 丝滑分段选择器 */
         .view-switch {
             display: flex; background: var(--input-bg); border-radius: 100px; padding: 3px;
             margin-bottom: 20px; box-shadow: var(--inner-shadow);
@@ -280,8 +249,6 @@
         }
         .cb-head { display: flex; justify-content: space-between; margin-bottom: 12px; align-items: center;}
         .cb-title { font-size: 11px; font-weight: bold; color: var(--text-sub); letter-spacing: 0.5px;}
-        
-        .cb-head-right { display: flex; gap: 6px; }
 
         .cb-content {
             font-family: "Courier New", monospace; font-size: 10.5px; color: var(--text-main);
@@ -351,7 +318,6 @@
 
     <div id="view-home" class="view-container active">
         <div class="add-block" onclick="app.goEdit()">
-            <svg class="svg-icon empty-icon" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
             <span class="add-text">搓个新玩具</span>
         </div>
         <div class="grid" id="card-list"></div>
@@ -363,8 +329,10 @@
                 <svg class="svg-icon" style="margin-right:2px;" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg> 溜了
             </div>
             <div class="detail-actions" style="display:flex; gap:8px;">
+                <!-- 导出按钮放到了操作区最前面 -->
+                <div class="capsule-btn primary" onclick="app.exportJson()">导出酒馆正则</div>
                 <div class="capsule-btn danger" onclick="app.deleteItem(app.currentId)">毁尸灭迹</div>
-                <div class="capsule-btn primary" onclick="app.goEdit(app.currentId)">扒皮微调</div>
+                <div class="capsule-btn" onclick="app.goEdit(app.currentId)">扒皮微调</div>
             </div>
         </div>
         
@@ -382,10 +350,7 @@
         <div class="copy-block">
             <div class="cb-head">
                 <span class="cb-title">匹配词：超精简正则提取</span>
-                <div class="cb-head-right">
-                    <div class="capsule-btn" onclick="app.copyText('d-regex', this)">复制</div>
-                    <div class="capsule-btn primary" onclick="app.exportJson()">📦 导出酒馆正则(JSON)</div>
-                </div>
+                <div class="capsule-btn" onclick="app.copyText('d-regex', this)">复制</div>
             </div>
             <div class="cb-content" id="d-regex"></div>
         </div>
@@ -416,7 +381,7 @@
         <div class="form-group">
             <label class="form-label">封面靓照 (不传会自动渲染代码截图)</label>
             <div class="upload-area" onclick="document.getElementById('f-cover-file').click()">
-                <span class="upload-text" id="upload-text">+ 戳我选照片</span>
+                <span class="upload-text" id="upload-text">戳我选照片</span>
                 <div class="upload-preview-wrap" id="f-cover-preview-wrap">
                     <img class="upload-preview" id="f-cover-preview" src="">
                     <div class="upload-hover-hint">点击可换图</div>
@@ -618,7 +583,6 @@
                     if (item.cover) {
                         coverHtml = `<div class="card-cover" style="background-image: url('${item.cover}')"></div>`;
                     } else if (item.htmlCode) {
-                        // 微缩版动态渲染 iframe
                         let injectedHtml = item.htmlCode;
                         if (item.testText) {
                             injectedHtml = injectedHtml.replace(/\$1/g, item.testText);
@@ -767,7 +731,6 @@
                     return;
                 }
 
-                // 组装酒馆标准 JSON 格式
                 const tavernJson = {
                     "disabled": false,
                     "findRegex": item.regex,
@@ -801,7 +764,7 @@
 
             async generateTestText() {
                 if (!this.apiConfig.url || !this.apiConfig.key) {
-                    alert("主子，您还没去上面齿轮⚙里填API通道信息呢！");
+                    alert("主子，您还没去上面齿轮里填API通道信息呢！");
                     return;
                 }
                 const promptVal = document.getElementById('f-prompt').value.trim();
