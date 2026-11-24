@@ -71,6 +71,7 @@
             font-size: 11px;
             line-height: 1.5;
             transition: background-color 0.4s ease, color 0.4s ease;
+            padding-bottom: 50px;
         }
 
         .svg-icon {
@@ -112,6 +113,7 @@
         }
         .icon-btn:hover { color: var(--text-main); transform: translateY(-1px); }
         .icon-btn:active { transform: translateY(0) scale(0.95); }
+        .icon-btn.active { color: var(--accent-color); border-color: var(--accent-color); }
 
         /* ====== 视图容器 ====== */
         .view-container { 
@@ -129,6 +131,7 @@
             cursor: pointer; transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
             background: var(--bg-panel-solid); border: 1px solid var(--border-line);
             color: var(--text-main); box-shadow: var(--card-shadow), var(--jelly-inset);
+            user-select: none;
         }
         .capsule-btn:hover { transform: translateY(-1px); }
         .capsule-btn:active { transform: translateY(0) scale(0.95); }
@@ -137,18 +140,34 @@
         .capsule-btn.primary:hover { opacity: 0.9; }
         
         .capsule-btn.danger { color: var(--danger-color); }
+        .capsule-btn.danger.solid { background: var(--danger-color); color: #FFF; border: none; }
         .capsule-btn.copied { background: var(--accent-color); color: var(--bg-main); border: none; }
+        .capsule-btn.disabled { opacity: 0.4; pointer-events: none; }
 
-        /* ====== 主页 ====== */
+        /* ====== 主页功能栏 ====== */
+        .home-actions {
+            display: flex; gap: 10px; margin-bottom: 24px;
+        }
         .add-block {
+            flex: 1;
             background: var(--bg-panel); border: 1px solid var(--border-line);
-            border-radius: 16px; padding: 14px; margin-bottom: 24px;
+            border-radius: 16px; padding: 14px;
             display: flex; justify-content: center; align-items: center; gap: 8px;
             cursor: pointer; transition: all 0.3s ease; box-shadow: var(--inner-shadow);
         }
         .add-block:hover { border-color: var(--text-sub); }
         .add-block:active { transform: scale(0.98); }
         .add-text { font-size: 11px; font-weight: normal; color: var(--text-sub); letter-spacing: 1px; }
+
+        .manage-toggle-btn {
+            padding: 0 16px;
+            background: var(--bg-panel-solid); border: 1px solid var(--border-line);
+            border-radius: 16px; display: flex; justify-content: center; align-items: center; gap: 6px;
+            cursor: pointer; transition: all 0.3s ease; box-shadow: var(--card-shadow), var(--jelly-inset);
+            color: var(--text-sub); font-size: 10.5px; font-weight: bold;
+        }
+        .manage-toggle-btn:hover { color: var(--text-main); border-color: var(--text-sub); }
+        .manage-toggle-btn.active { color: var(--accent-color); border-color: var(--accent-color); }
 
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 14px; }
         .card {
@@ -157,9 +176,41 @@
             box-shadow: var(--card-shadow), var(--jelly-inset); 
             transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
             display: flex; flex-direction: column;
+            position: relative;
         }
         .card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.06), var(--jelly-inset); }
         .card:active { transform: scale(0.96); }
+        
+        /* 选中高亮状态 */
+        .card.selected {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 1.5px var(--accent-color), 0 8px 24px rgba(107, 138, 158, 0.25);
+            transform: translateY(-2px);
+        }
+
+        /* 勾选框徽标 (果冻质感) */
+        .card-checkbox {
+            position: absolute; top: 8px; left: 8px; z-index: 30;
+            width: 20px; height: 20px; border-radius: 50%;
+            background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            border: 1.5px solid rgba(0, 0, 0, 0.15);
+            display: none; align-items: center; justify-content: center;
+            transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        body.dark-mode .card-checkbox, body.force-dark .card-checkbox {
+            background: rgba(24, 24, 28, 0.75);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+        .batch-mode .card-checkbox { display: flex; animation: fadeIn 0.25s ease; }
+        .card.selected .card-checkbox {
+            background: var(--accent-color); border-color: var(--accent-color);
+            transform: scale(1.08);
+        }
+        .card-checkbox svg {
+            width: 10px; height: 10px; stroke: #FFF; stroke-width: 2.5; display: none;
+        }
+        .card.selected .card-checkbox svg { display: block; }
         
         .card-cover { 
             width: 100%; aspect-ratio: 16/9; background-size: cover; background-position: center; 
@@ -168,7 +219,6 @@
         }
         .card-cover::after { content: ''; position: absolute; inset: 0; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.02); z-index: 20; pointer-events: none; }
         
-        /* 优化后的微缩预览区：放大居中饱满呈现 */
         .preview-iframe-wrap { 
             position: absolute; inset: 0; pointer-events: none; z-index: 10; 
             display: flex; justify-content: center; align-items: center;
@@ -184,6 +234,26 @@
         
         .empty-state { text-align: center; color: var(--text-sub); padding: 40px 0; font-size: 11px; grid-column: 1 / -1; display: flex; flex-direction: column; gap: 8px; align-items: center;}
         .empty-icon { opacity: 0.3; }
+
+        /* ====== 底部批量管理浮动胶囊 ====== */
+        .batch-bar {
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(80px);
+            background: var(--bg-panel); backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
+            border: 1px solid var(--border-line); border-radius: 100px;
+            padding: 8px 14px; display: flex; align-items: center; gap: 10px;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15), var(--jelly-inset);
+            z-index: 500; transition: all 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+            opacity: 0; pointer-events: none;
+        }
+        .batch-bar.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1; pointer-events: auto;
+        }
+        .batch-count-info {
+            font-size: 10.5px; font-weight: bold; color: var(--text-sub);
+            padding: 0 4px; display: flex; align-items: center; gap: 4px;
+        }
+        .batch-count-num { color: var(--accent-color); font-size: 12px; }
 
         /* ====== 编辑/新增页 ====== */
         .form-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
@@ -217,7 +287,6 @@
         .upload-hover-hint { position: absolute; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(2px); color: white; display: flex; justify-content: center; align-items: center; opacity: 0; font-size: 10.5px; font-weight: bold; transition: opacity 0.3s; pointer-events: none;}
         .upload-area:hover .upload-hover-hint { opacity: 1; }
         
-        /* 预览图右上角的删除小叉叉 */
         .delete-cover-btn {
             position: absolute; top: 8px; right: 8px;
             width: 26px; height: 26px; border-radius: 50%;
@@ -325,6 +394,9 @@
             </div>
         </div>
         <div class="nav-tools">
+            <div class="icon-btn" id="nav-batch-btn" onclick="app.toggleBatchMode()" title="整理库房">
+                <svg class="svg-icon" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+            </div>
             <div class="icon-btn" onclick="app.openSettings()" title="捣鼓设置">
                 <svg class="svg-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
             </div>
@@ -335,10 +407,26 @@
     </div>
 
     <div id="view-home" class="view-container active">
-        <div class="add-block" onclick="app.goEdit()">
-            <span class="add-text">搓个新玩具</span>
+        <div class="home-actions">
+            <div class="add-block" onclick="app.goEdit()">
+                <span class="add-text">搓个新玩具</span>
+            </div>
+            <div class="manage-toggle-btn" id="home-manage-btn" onclick="app.toggleBatchMode()">
+                <svg class="svg-icon" style="width:11px;height:11px;" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                <span>批量清理</span>
+            </div>
         </div>
         <div class="grid" id="card-list"></div>
+    </div>
+
+    <!-- 批量管理底部悬浮操作栏 -->
+    <div class="batch-bar" id="batch-bar">
+        <div class="batch-count-info">
+            已翻 <span class="batch-count-num" id="batch-selected-count">0</span> 个牌子
+        </div>
+        <div class="capsule-btn" onclick="app.toggleSelectAll()" id="btn-select-all">全选</div>
+        <div class="capsule-btn danger solid disabled" id="btn-batch-delete" onclick="app.batchDelete()">一并销毁</div>
+        <div class="capsule-btn" onclick="app.toggleBatchMode(false)">收工</div>
     </div>
 
     <div id="view-detail" class="view-container">
@@ -402,7 +490,6 @@
                 <div class="upload-preview-wrap" id="f-cover-preview-wrap">
                     <img class="upload-preview" id="f-cover-preview" src="">
                     <div class="upload-hover-hint">点击可换图</div>
-                    <!-- 添加了自由删除小叉叉 -->
                     <div class="delete-cover-btn" onclick="app.removeCover(event)">✕</div>
                 </div>
             </div>
@@ -470,6 +557,8 @@
             data: [],
             currentId: null,
             apiConfig: { url: '', key: '', model: '' },
+            isBatchMode: false,
+            selectedIds: new Set(),
             
             icons: {
                 moon: '<svg class="svg-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>',
@@ -585,11 +674,111 @@
             },
 
             switchView(viewId) {
+                if (this.isBatchMode && viewId !== 'view-home') {
+                    this.toggleBatchMode(false);
+                }
                 document.querySelectorAll('.view-container').forEach(v => v.classList.remove('active'));
                 document.getElementById(viewId).classList.add('active');
                 window.scrollTo(0, 0);
             },
             goHome() { this.renderList(); this.switchView('view-home'); },
+
+            /* ====== 批量管理模块 ====== */
+            toggleBatchMode(forceState = null) {
+                if (this.data.length === 0 && forceState !== false) {
+                    this.showToast("库房空空如也，没东西可清呢");
+                    return;
+                }
+                this.isBatchMode = forceState !== null ? forceState : !this.isBatchMode;
+                this.selectedIds.clear();
+
+                const homeBtn = document.getElementById('home-manage-btn');
+                const navBtn = document.getElementById('nav-batch-btn');
+                const batchBar = document.getElementById('batch-bar');
+
+                if (this.isBatchMode) {
+                    document.body.classList.add('batch-mode');
+                    homeBtn && homeBtn.classList.add('active');
+                    navBtn && navBtn.classList.add('active');
+                    batchBar && batchBar.classList.add('show');
+                    this.showToast('已进入清理模式');
+                } else {
+                    document.body.classList.remove('batch-mode');
+                    homeBtn && homeBtn.classList.remove('active');
+                    navBtn && navBtn.classList.remove('active');
+                    batchBar && batchBar.classList.remove('show');
+                }
+                this.updateBatchBar();
+                this.renderList();
+            },
+
+            toggleCardSelection(id) {
+                if (this.selectedIds.has(id)) {
+                    this.selectedIds.delete(id);
+                } else {
+                    this.selectedIds.add(id);
+                }
+                this.updateBatchBar();
+                
+                const cardEl = document.querySelector(`.card[data-id="${id}"]`);
+                if (cardEl) {
+                    if (this.selectedIds.has(id)) cardEl.classList.add('selected');
+                    else cardEl.classList.remove('selected');
+                }
+            },
+
+            toggleSelectAll() {
+                if (this.selectedIds.size === this.data.length) {
+                    this.selectedIds.clear();
+                } else {
+                    this.selectedIds = new Set(this.data.map(d => d.id));
+                }
+                this.updateBatchBar();
+                this.renderList();
+            },
+
+            updateBatchBar() {
+                const count = this.selectedIds.size;
+                const countEl = document.getElementById('batch-selected-count');
+                const delBtn = document.getElementById('btn-batch-delete');
+                const allBtn = document.getElementById('btn-select-all');
+
+                if (countEl) countEl.innerText = count;
+
+                if (delBtn) {
+                    if (count > 0) {
+                        delBtn.classList.remove('disabled');
+                        delBtn.innerText = `一并销毁 (${count})`;
+                    } else {
+                        delBtn.classList.add('disabled');
+                        delBtn.innerText = `一并销毁`;
+                    }
+                }
+
+                if (allBtn) {
+                    allBtn.innerText = (count === this.data.length && this.data.length > 0) ? '取消全选' : '全部拉走';
+                }
+            },
+
+            batchDelete() {
+                const count = this.selectedIds.size;
+                if (count === 0) {
+                    this.showToast('主子，您还没翻哪个牌子呢');
+                    return;
+                }
+                if (confirm(`真要把这选中出来的 ${count} 个心血结晶一并彻底毁尸灭迹吗？`)) {
+                    this.data = this.data.filter(item => !this.selectedIds.has(item.id));
+                    this.saveData();
+                    this.selectedIds.clear();
+                    this.showToast(`已清扫干净！共销毁 ${count} 件`);
+                    if (this.data.length === 0) {
+                        this.toggleBatchMode(false);
+                    } else {
+                        this.updateBatchBar();
+                        this.renderList();
+                    }
+                }
+            },
 
             renderList() {
                 const list = document.getElementById('card-list');
@@ -618,8 +807,14 @@
                         coverHtml = `<div class="card-cover"></div>`;
                     }
 
+                    const isSelected = this.selectedIds.has(item.id);
+                    const clickAction = this.isBatchMode ? `app.toggleCardSelection('${item.id}')` : `app.goDetail('${item.id}')`;
+
                     return `
-                    <div class="card" onclick="app.goDetail('${item.id}')">
+                    <div class="card ${isSelected ? 'selected' : ''}" data-id="${item.id}" onclick="${clickAction}">
+                        <div class="card-checkbox">
+                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </div>
                         ${coverHtml}
                         <div class="card-info"><div class="card-title">${item.title || '无名弃婴'}</div></div>
                     </div>`;
@@ -645,7 +840,7 @@
                         document.getElementById('f-cover-preview').src = dataUrl;
                         document.getElementById('f-cover-preview-wrap').style.display = 'block';
                         document.getElementById('upload-text').style.display = 'none';
-                        document.getElementById('f-cover-file').value = ''; // 重置 file 避免选同图不触发
+                        document.getElementById('f-cover-file').value = '';
                     };
                     img.src = e.target.result;
                 };
